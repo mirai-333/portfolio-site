@@ -17,6 +17,7 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'last-ride-survival-protocol': '3Dモデリング',
   'beyond-the-torii': 'ゲーム',
   'stylesnap-motion-vfx': '動画・モーション/VFX',
+  'ghost-presence-vfx': '動画・モーション/VFX',
   pulse: '動画・モーション/VFX',
   notes: '3Dモデリング',
 }
@@ -28,6 +29,7 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/maxresdefault.jpg',
   'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/maxresdefault.jpg',
   'stylesnap-motion-vfx': 'https://img.youtube.com/vi/xSLoQvwidnU/maxresdefault.jpg',
+  'ghost-presence-vfx': 'https://img.youtube.com/vi/rAOvy839UHo/maxresdefault.jpg',
   pulse: undefined,
   notes: undefined,
 }
@@ -55,7 +57,7 @@ export function WorkSection() {
         <div>
           <SectionHeading index="01" title="制作物" />
           <p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-            ゲーム・UI/UX・動画・モーション/VFX・3Dモデリングを中心に、企画から制作、実装、検証まで取り組んだ作品です。
+            ゲーム・UI/UX・動画・3Dモデリングを中心に、企画から制作、実装、検証まで取り組んだ作品です。
           </p>
         </div>
         <span className="font-mono text-xs tracking-[0.18em] text-brand">SELECTED WORKS</span>
