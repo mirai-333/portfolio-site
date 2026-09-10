@@ -12,14 +12,14 @@ const categories: WorkCategory[] = ['すべて', 'ゲーム', 'UI・UX', '動画
 
 const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'saferoute-vr': 'ゲーム',
-  atlas: 'UI・UX',
+  'grocery-time': 'ゲーム',
   pulse: '動画',
   notes: '3Dモデリング',
 }
 
 const projectThumbnailMap: Record<string, string | undefined> = {
   'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/maxresdefault.jpg',
-  atlas: undefined,
+  'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/maxresdefault.jpg',
   pulse: undefined,
   notes: undefined,
 }
@@ -79,6 +79,7 @@ export function WorkSection() {
         {visibleProjects.map((project) => {
           const category = projectCategoryMap[project.slug]
           const thumbnail = projectThumbnailMap[project.slug]
+          const youtubeId = project.videoEmbedUrl?.split('/embed/')[1]?.split('?')[0]
 
           return (
             <li key={project.slug} className="min-w-0">
@@ -105,7 +106,7 @@ export function WorkSection() {
 
                   {project.videoEmbedUrl ? (
                     <iframe
-                      src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1&playlist=TX7t-ck0Q28&modestbranding=1`}
+                      src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1${youtubeId ? `&playlist=${youtubeId}` : ''}&modestbranding=1`}
                       title={`${project.title} video preview`}
                       className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       allow="autoplay; encrypted-media; picture-in-picture"
