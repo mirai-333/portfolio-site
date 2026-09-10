@@ -14,6 +14,7 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'saferoute-vr': 'ゲーム',
   'grocery-time': 'ゲーム',
   'wedo-ux': 'UI・UX',
+  'last-ride-survival-protocol': '3Dモデリング',
   pulse: '動画',
   notes: '3Dモデリング',
 }
@@ -22,6 +23,7 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/maxresdefault.jpg',
   'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/maxresdefault.jpg',
   'wedo-ux': undefined,
+  'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/maxresdefault.jpg',
   pulse: undefined,
   notes: undefined,
 }
