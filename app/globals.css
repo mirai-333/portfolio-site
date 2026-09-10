@@ -70,9 +70,10 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --brand: oklch(0.62 0.15 280);
-  --brand-foreground: oklch(0.985 0 0);
-  --brand-soft: oklch(0.62 0.15 280 / 12%);
+  --brand: oklch(0.78 0.23 145);
+  --brand-foreground: oklch(0.22 0.05 150);
+  --brand-soft: oklch(0.78 0.23 145 / 16%);
+  --grid-line: oklch(0.68 0.2 145 / 26%);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -109,9 +110,10 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --brand: oklch(0.76 0.13 285);
-  --brand-foreground: oklch(0.205 0 0);
-  --brand-soft: oklch(0.76 0.13 285 / 16%);
+  --brand: oklch(0.86 0.26 145);
+  --brand-foreground: oklch(0.16 0.03 150);
+  --brand-soft: oklch(0.86 0.26 145 / 20%);
+  --grid-line: oklch(0.86 0.26 145 / 15%);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -196,12 +198,12 @@
   /* Slow drifting technical grid for the page backdrop */
   .tech-grid {
     background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 46px 46px;
-    opacity: 0.5;
-    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 80%);
-    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 80%);
+    opacity: 1;
+    -webkit-mask-image: radial-gradient(ellipse 95% 80% at 50% 20%, black 30%, transparent 85%);
+    mask-image: radial-gradient(ellipse 95% 80% at 50% 20%, black 30%, transparent 85%);
     animation: tech-grid-drift 24s linear infinite;
   }
 
