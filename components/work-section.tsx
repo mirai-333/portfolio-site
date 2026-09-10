@@ -34,6 +34,10 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   notes: undefined,
 }
 
+const projectTitleMap: Record<string, string> = {
+  'ghost-presence-vfx': 'ALL Choices',
+}
+
 export function WorkSection() {
   const [activeCategory, setActiveCategory] = useState<WorkCategory>('すべて')
 
@@ -54,10 +58,13 @@ export function WorkSection() {
       />
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+        <div className="max-w-2xl">
           <SectionHeading index="01" title="制作物" />
-          <p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-            ゲーム・UI/UX・動画・3Dモデリングを中心に、企画から制作、実装、検証まで取り組んだ作品です。
+          <p className="mt-4 leading-7 text-muted-foreground">
+            掲載している作品の多くは、大学の課題として制作したものです。授業では完成物だけでなく、制作の途中で何を考え、何を発見し、それをどう改善へつなげたかというプロセスが重視されていました。
+          </p>
+          <p className="mt-3 leading-7 text-muted-foreground">
+            そのため、まずアンケートやリサーチからターゲットユーザーと課題を整理し、得られた結果をもとに方向性を決め、アイデアを出しながら制作を進めています。作品ごとに機能・UI・世界観・映像表現の雰囲気が異なるのは、表現を統一していないからではなく、<span className="font-medium text-foreground">それぞれのターゲットと目的に合わせて意図的に設計を変えているためです。</span>
           </p>
         </div>
         <span className="font-mono text-xs tracking-[0.18em] text-brand">SELECTED WORKS</span>
@@ -90,6 +97,7 @@ export function WorkSection() {
           const category = projectCategoryMap[project.slug]
           const thumbnail = projectThumbnailMap[project.slug]
           const youtubeId = project.videoEmbedUrl?.split('/embed/')[1]?.split('?')[0]
+          const displayTitle = projectTitleMap[project.slug] ?? project.title
 
           return (
             <li key={project.slug} className="min-w-0">
@@ -102,7 +110,7 @@ export function WorkSection() {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={thumbnail}
-                      alt={`${project.title} サムネイル`}
+                      alt={`${displayTitle} サムネイル`}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
@@ -117,7 +125,7 @@ export function WorkSection() {
                   {project.videoEmbedUrl ? (
                     <iframe
                       src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1${youtubeId ? `&playlist=${youtubeId}` : ''}&modestbranding=1`}
-                      title={`${project.title} video preview`}
+                      title={`${displayTitle} video preview`}
                       className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       allow="autoplay; encrypted-media; picture-in-picture"
                       tabIndex={-1}
@@ -144,7 +152,7 @@ export function WorkSection() {
 
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="w-full text-xl font-semibold tracking-tight text-foreground">
-                    {project.title}
+                    {displayTitle}
                   </h3>
 
                   <p className="mt-4 w-full line-clamp-3 text-pretty leading-7 text-muted-foreground">
