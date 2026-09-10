@@ -12,9 +12,9 @@ export default function Page() {
       <SiteNav />
       <main className="mx-auto max-w-3xl px-6">
         <HeroSection />
+        <WorkSection />
         <AboutSection />
         <SkillsSection />
-        <WorkSection />
         <ContactSection />
       </main>
       <footer className="mx-auto max-w-3xl px-6 py-10">
