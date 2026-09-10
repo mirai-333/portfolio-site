@@ -1,10 +1,26 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Geist, Geist_Mono, Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
 
+const geistSans = Geist({
+  subsets: ['latin'],
+  variable: '--font-geist-sans',
+})
+
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  variable: '--font-noto-sans-jp',
+})
+
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Yuki Sato — Software Engineer',
+  description: 'ソフトウェアエンジニア 佐藤 悠生のポートフォリオ。Webアプリケーション開発、プロダクト設計、実績を掲載しています。',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -39,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="ja" className={`bg-background ${geistSans.variable} ${geistMono.variable} ${notoSansJP.variable}`}>
+      <body className="antialiased font-sans">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
