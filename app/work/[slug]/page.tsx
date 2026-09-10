@@ -18,6 +18,7 @@ export default async function ProjectDetailPage({
   if (!project) notFound()
 
   const showVideoSection = Boolean(project.videoEmbedUrl)
+  const displayTitle = project.slug === 'ghost-presence-vfx' ? 'ALL Choices' : project.title
 
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10 sm:py-16">
@@ -37,7 +38,7 @@ export default async function ProjectDetailPage({
         </div>
 
         <h1 className="mt-4 w-full text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-[3.25rem] lg:text-[3.5rem]">
-          {project.title}
+          {displayTitle}
         </h1>
 
         <p className="mt-6 w-full text-pretty text-lg leading-8 text-muted-foreground">
@@ -144,7 +145,7 @@ export default async function ProjectDetailPage({
           <div className="mt-4 aspect-video overflow-hidden rounded-3xl border border-border bg-card">
             <iframe
               src={project.videoEmbedUrl}
-              title={`${project.title} video preview`}
+              title={`${displayTitle} video preview`}
               className="h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
