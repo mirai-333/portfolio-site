@@ -13,6 +13,7 @@ const categories: WorkCategory[] = ['すべて', 'ゲーム', 'UI・UX', '動画
 const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'saferoute-vr': 'ゲーム',
   'grocery-time': 'ゲーム',
+  'wedo-ux': 'UI・UX',
   pulse: '動画',
   notes: '3Dモデリング',
 }
@@ -20,6 +21,7 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
 const projectThumbnailMap: Record<string, string | undefined> = {
   'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/maxresdefault.jpg',
   'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/maxresdefault.jpg',
+  'wedo-ux': undefined,
   pulse: undefined,
   notes: undefined,
 }
@@ -99,7 +101,7 @@ export function WorkSection() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.42),transparent_34%),radial-gradient(circle_at_80%_75%,rgba(96,165,250,0.28),transparent_32%)]" />
                       <div className="relative rounded-full border border-white/35 bg-white/10 px-4 py-2 font-mono text-xs tracking-[0.16em] text-white/85 backdrop-blur-sm">
-                        IMAGE PREVIEW
+                        {project.figmaUrl ? 'FIGMA PREVIEW' : 'IMAGE PREVIEW'}
                       </div>
                     </div>
                   )}
@@ -112,6 +114,12 @@ export function WorkSection() {
                       allow="autoplay; encrypted-media; picture-in-picture"
                       tabIndex={-1}
                     />
+                  ) : project.figmaUrl ? (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-950/0 opacity-0 transition-all duration-300 group-hover:bg-slate-950/20 group-hover:opacity-100">
+                      <span className="rounded-full border border-white/30 bg-black/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
+                        VIEW FIGMA PROTOTYPE
+                      </span>
+                    </div>
                   ) : (
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-950/0 opacity-0 transition-all duration-300 group-hover:bg-slate-950/25 group-hover:opacity-100">
                       <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
