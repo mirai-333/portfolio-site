@@ -7,7 +7,6 @@ const links = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#work', label: 'Work' },
-  { href: '#contact', label: 'Contact' },
 ]
 
 export function SiteNav() {
@@ -21,21 +20,23 @@ export function SiteNav() {
   }, [])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'border-b border-border bg-background/80 backdrop-blur-md' : 'border-b border-transparent'
-      }`}
-    >
-      <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+      <nav
+        className={`flex w-full max-w-3xl items-center justify-between rounded-full px-5 py-2.5 transition-all duration-300 ${
+          scrolled
+            ? 'border border-border bg-background/70 shadow-sm backdrop-blur-md'
+            : 'border border-transparent'
+        }`}
+      >
         <a href="#top" className="font-mono text-sm tracking-tight text-foreground">
           {profile.nameEn}
         </a>
-        <ul className="flex items-center gap-6">
+        <ul className="flex items-center gap-1">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-brand-soft hover:text-brand"
               >
                 {link.label}
               </a>
