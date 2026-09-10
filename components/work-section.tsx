@@ -1,53 +1,147 @@
+'use client'
+
 import Link from 'next/link'
+import { useMemo, useState } from 'react'
 import { projects } from '@/lib/portfolio-data'
 import { SectionHeading } from '@/components/section-heading'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Play } from 'lucide-react'
+
+type WorkCategory = 'すべて' | 'ゲーム' | 'UI・UX' | '動画' | '3Dモデリング'
+
+const categories: WorkCategory[] = ['すべて', 'ゲーム', 'UI・UX', '動画', '3Dモデリング']
+
+// 仮分類。実際の制作物へ差し替える際はここだけ変更すればOKです。
+const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
+  ledger: 'ゲーム',
+  atlas: 'UI・UX',
+  pulse: '動画',
+  notes: '3Dモデリング',
+}
+
+// サムネイル画像の仮設定。実画像追加後はURLを差し替えてください。
+const projectThumbnailMap: Record<string, string | undefined> = {
+  ledger: undefined,
+  atlas: undefined,
+  pulse: undefined,
+  notes: undefined,
+}
 
 export function WorkSection() {
+  const [activeCategory, setActiveCategory] = useState<WorkCategory>('すべて')
+
+  const visibleProjects = useMemo(() => {
+    return [...projects]
+      .sort((a, b) => Number(b.year) - Number(a.year))
+      .filter((project) => {
+        if (activeCategory === 'すべて') return true
+        return projectCategoryMap[project.slug] === activeCategory
+      })
+  }, [activeCategory])
+
   return (
     <section id="work" className="relative border-t border-border py-24 sm:py-28">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-[-10vw] top-12 -z-10 h-[70%] rounded-[4rem] bg-gradient-to-br from-brand/10 via-violet-400/10 to-cyan-300/10 blur-3xl"
+        className="pointer-events-none absolute inset-x-[-10vw] top-12 -z-10 h-[78%] rounded-[4rem] bg-gradient-to-br from-brand/12 via-violet-400/10 to-cyan-300/12 blur-3xl"
       />
 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <SectionHeading index="01" title="制作物" />
           <p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-            VR・ゲーム・UXを中心に、企画から設計、実装、検証まで取り組んだプロジェクトです。
+            ゲーム・UI/UX・動画・3Dモデリングを中心に、企画から制作、実装、検証まで取り組んだ作品です。
           </p>
         </div>
         <span className="font-mono text-xs tracking-[0.18em] text-brand">SELECTED WORKS</span>
       </div>
 
-      <ul className="mt-12 grid gap-5">
-        {projects.map((project, index) => (
-          <li key={project.slug}>
-            <Link
-              href={`/work/${project.slug}`}
-              className="group relative flex overflow-hidden rounded-3xl border border-brand/15 bg-card/75 p-6 shadow-[0_18px_60px_-28px_rgba(95,77,255,0.45)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-[0_26px_80px_-28px_rgba(95,77,255,0.6)] sm:p-8"
-            >
-              <div
-                aria-hidden="true"
-                className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-violet-400 via-brand to-cyan-400 opacity-70 transition-all duration-300 group-hover:w-1.5 group-hover:opacity-100"
-              />
+      <div className="mt-9 flex flex-wrap gap-2.5" aria-label="制作物カテゴリ">
+        {categories.map((category) => {
+          const isActive = activeCategory === category
 
-              <div className="flex w-full flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-                <div className="max-w-2xl">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs text-brand/75">0{index + 1}</span>
-                    <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+          return (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setActiveCategory(category)}
+              aria-pressed={isActive}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? 'border-brand bg-brand text-brand-foreground shadow-[0_10px_30px_-14px_rgba(95,77,255,0.85)]'
+                  : 'border-border bg-card/70 text-muted-foreground backdrop-blur-sm hover:-translate-y-0.5 hover:border-brand/35 hover:text-brand'
+              }`}
+            >
+              {category}
+            </button>
+          )
+        })}
+      </div>
+
+      <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+        {visibleProjects.map((project) => {
+          const category = projectCategoryMap[project.slug]
+          const thumbnail = projectThumbnailMap[project.slug]
+
+          return (
+            <li key={project.slug} className="min-w-0">
+              <Link
+                href={`/work/${project.slug}`}
+                className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-brand/15 bg-card/80 shadow-[0_18px_60px_-28px_rgba(95,77,255,0.45)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-[0_28px_80px_-30px_rgba(95,77,255,0.62)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-border bg-gradient-to-br from-violet-500/22 via-brand/18 to-cyan-400/22">
+                  {thumbnail ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={thumbnail}
+                      alt={`${project.title} サムネイル`}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(255,255,255,0.42),transparent_34%),radial-gradient(circle_at_80%_75%,rgba(96,165,250,0.28),transparent_32%)]" />
+                      <div className="relative rounded-full border border-white/35 bg-white/10 px-4 py-2 font-mono text-xs tracking-[0.16em] text-white/85 backdrop-blur-sm">
+                        IMAGE PREVIEW
+                      </div>
+                    </div>
+                  )}
+
+                  {project.videoEmbedUrl ? (
+                    <iframe
+                      src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1&modestbranding=1`}
+                      title={`${project.title} video preview`}
+                      className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      allow="autoplay; encrypted-media; picture-in-picture"
+                      tabIndex={-1}
+                    />
+                  ) : (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-slate-950/0 opacity-0 transition-all duration-300 group-hover:bg-slate-950/25 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-black/20 px-4 py-2 text-xs font-medium text-white backdrop-blur-md">
+                        <Play className="size-3.5 fill-current" aria-hidden="true" />
+                        VIDEO PREVIEW
+                      </span>
+                    </div>
+                  )}
+
+                  <span className="absolute left-4 top-4 rounded-full border border-white/30 bg-black/20 px-3 py-1 font-mono text-[11px] text-white backdrop-blur-md">
+                    {category}
+                  </span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
                       {project.title}
                     </h3>
                     <ArrowUpRight
-                      className="size-5 text-brand transition-all group-hover:-translate-y-1 group-hover:translate-x-1"
+                      className="mt-0.5 size-5 shrink-0 text-brand transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
                       aria-hidden="true"
                     />
                   </div>
-                  <p className="mt-4 text-pretty leading-7 text-muted-foreground">
+
+                  <p className="mt-4 line-clamp-3 text-pretty leading-7 text-muted-foreground">
                     {project.description}
                   </p>
+
                   <ul className="mt-5 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <li
@@ -58,15 +152,25 @@ export function WorkSection() {
                       </li>
                     ))}
                   </ul>
+
+                  <div className="mt-auto flex items-center justify-between pt-7">
+                    <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                    <span className="font-mono text-[11px] tracking-[0.12em] text-brand/80">
+                      VIEW PROJECT
+                    </span>
+                  </div>
                 </div>
-                <span className="shrink-0 rounded-full border border-border bg-background/40 px-3 py-1 font-mono text-xs text-muted-foreground">
-                  {project.year}
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
+
+      {visibleProjects.length === 0 && (
+        <div className="mt-10 rounded-3xl border border-dashed border-border bg-card/55 px-6 py-16 text-center text-sm text-muted-foreground backdrop-blur-sm">
+          このカテゴリの制作物はまだありません。
+        </div>
+      )}
     </section>
   )
 }
