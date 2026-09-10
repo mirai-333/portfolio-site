@@ -10,17 +10,15 @@ type WorkCategory = 'すべて' | 'ゲーム' | 'UI・UX' | '動画' | '3Dモデ
 
 const categories: WorkCategory[] = ['すべて', 'ゲーム', 'UI・UX', '動画', '3Dモデリング']
 
-// 仮分類。実際の制作物へ差し替える際はここだけ変更すればOKです。
 const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
-  ledger: 'ゲーム',
+  'saferoute-vr': 'ゲーム',
   atlas: 'UI・UX',
   pulse: '動画',
   notes: '3Dモデリング',
 }
 
-// サムネイル画像の仮設定。実画像追加後はURLを差し替えてください。
 const projectThumbnailMap: Record<string, string | undefined> = {
-  ledger: undefined,
+  'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/maxresdefault.jpg',
   atlas: undefined,
   pulse: undefined,
   notes: undefined,
@@ -107,7 +105,7 @@ export function WorkSection() {
 
                   {project.videoEmbedUrl ? (
                     <iframe
-                      src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1&modestbranding=1`}
+                      src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1&playlist=TX7t-ck0Q28&modestbranding=1`}
                       title={`${project.title} video preview`}
                       className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       allow="autoplay; encrypted-media; picture-in-picture"
