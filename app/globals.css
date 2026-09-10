@@ -192,4 +192,51 @@
       transparent 70%
     );
   }
+
+  /* Slow drifting technical grid for the page backdrop */
+  .tech-grid {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 46px 46px;
+    opacity: 0.5;
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 80%);
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 20%, transparent 80%);
+    animation: tech-grid-drift 24s linear infinite;
+  }
+
+  /* Breathing accent glow */
+  .tech-glow {
+    background: radial-gradient(circle, var(--brand-soft) 0%, transparent 65%);
+    filter: blur(20px);
+    animation: tech-glow-pulse 9s ease-in-out infinite;
+  }
+
+  @keyframes tech-grid-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 46px 46px, 46px 46px;
+    }
+  }
+
+  @keyframes tech-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: translate(-50%, -33%) scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: translate(-50%, -33%) scale(1.12);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tech-grid,
+    .tech-glow {
+      animation: none;
+    }
+  }
 }
