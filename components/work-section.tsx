@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
-import { projects } from '@/lib/portfolio-data'
+import { projects } from '@/lib/projects'
 import { SectionHeading } from '@/components/section-heading'
 import { ArrowUpRight, Play } from 'lucide-react'
 
