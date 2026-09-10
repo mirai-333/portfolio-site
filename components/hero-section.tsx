@@ -1,5 +1,3 @@
-import { ScribbleDoodle, SparkleDoodle } from '@/components/hand-doodles'
-
 export function HeroSection() {
   return (
     <section id="top" className="relative pt-40 pb-28 sm:pt-44 sm:pb-32">
@@ -7,10 +5,6 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-x-0 -top-24 -z-10 h-[460px] brand-glow"
         aria-hidden="true"
       />
-
-      <div className="pointer-events-none absolute right-0 top-28 hidden h-28 w-52 rotate-3 items-center justify-center overflow-hidden rounded-[2rem] border border-white/20 bg-gradient-to-br from-violet-500/65 via-brand/60 to-cyan-400/55 shadow-[0_20px_55px_-30px_rgba(90,70,255,0.7)] sm:flex">
-        <ScribbleDoodle className="h-20 w-44 opacity-85" />
-      </div>
 
       <div className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-card/60 px-3.5 py-1.5 font-mono text-xs text-brand backdrop-blur-md">
         <span className="size-1.5 rounded-full bg-brand" />
@@ -21,15 +15,12 @@ export function HeroSection() {
         VR・AR / ゲーム開発 / UX・インタラクションデザイン
       </p>
 
-      <div className="relative w-fit max-w-full">
-        <h1 className="mt-5 text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-6xl md:text-7xl">
-          津田 未来
-          <span className="mt-2 block bg-gradient-to-r from-brand via-violet-500 to-cyan-500 bg-clip-text text-transparent">
-            Mirai Tsuda
-          </span>
-        </h1>
-        <SparkleDoodle className="pointer-events-none absolute -right-20 -top-6 hidden h-16 w-24 opacity-55 md:block" />
-      </div>
+      <h1 className="mt-5 text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-6xl md:text-7xl">
+        津田 未来
+        <span className="mt-2 block bg-gradient-to-r from-brand via-violet-500 to-cyan-500 bg-clip-text text-transparent">
+          Mirai Tsuda
+        </span>
+      </h1>
 
       <p className="mt-9 max-w-2xl text-pretty text-[1.05rem] leading-8 text-muted-foreground">
         Asia Pacific UniversityでVR/ARを中心に学び、Unityを用いたVRコンテンツやゲーム制作、UX・HCIのプロジェクトに取り組んできました。技術とデザインの両方から、体験そのものを考えて形にすることを大切にしています。
