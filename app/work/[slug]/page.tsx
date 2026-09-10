@@ -54,6 +54,8 @@ export default async function ProjectDetailPage({
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href={project.youtubeUrl ?? '#'}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
           >
             <Play className="size-4" aria-hidden="true" />
@@ -61,6 +63,8 @@ export default async function ProjectDetailPage({
           </a>
           <a
             href={project.githubUrl ?? '#'}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
           >
             <Code2 className="size-4" aria-hidden="true" />
@@ -111,15 +115,15 @@ export default async function ProjectDetailPage({
       </section>
 
       <section className="border-t border-border py-16">
-        <div className="max-w-2xl">
+        <div className="w-full">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
             Process
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">
             制作プロセス
           </h2>
-          <p className="mt-4 leading-7 text-muted-foreground">
-            このセクションは長めのケーススタディを想定しています。文章だけでなく、ワイヤーフレーム、UnityやFigmaの画面、検証中のスクリーンショットなどを工程ごとに追加できます。
+          <p className="mt-4 w-full leading-7 text-muted-foreground">
+            企画・設計から実装、テスト、改善まで、制作の流れとその中で取り組んだ内容を工程ごとにまとめています。
           </p>
         </div>
 
@@ -127,8 +131,8 @@ export default async function ProjectDetailPage({
           {project.process.map((step) => (
             <article key={step.title} className="grid gap-6 sm:grid-cols-[180px_1fr]">
               <h3 className="font-mono text-sm text-foreground">{step.title}</h3>
-              <div>
-                <p className="max-w-2xl whitespace-pre-line leading-8 text-muted-foreground">
+              <div className="min-w-0">
+                <p className="w-full whitespace-pre-line leading-8 text-muted-foreground">
                   {step.body}
                 </p>
                 {step.image ? (
