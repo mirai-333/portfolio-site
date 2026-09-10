@@ -4,12 +4,12 @@ import { SectionHeading } from '@/components/section-heading'
 export function SkillsSection() {
   return (
     <section id="skills" className="border-t border-border py-20">
-      <SectionHeading index="02" title="Skills & Career" />
+      <SectionHeading index="03" title="スキル・経験" />
 
       <div className="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-2">
         {skillGroups.map((group) => (
           <div key={group.category}>
-            <h3 className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            <h3 className="font-mono text-xs tracking-widest text-muted-foreground">
               {group.category}
             </h3>
             <ul className="mt-3 flex flex-wrap gap-2">
@@ -29,7 +29,7 @@ export function SkillsSection() {
       <ol className="mt-16 space-y-3">
         {career.map((item) => (
           <li
-            key={item.company}
+            key={`${item.period}-${item.company}`}
             className="grid gap-2 rounded-2xl border border-transparent p-4 transition-colors hover:border-border hover:bg-card sm:grid-cols-[8rem_1fr] sm:gap-8"
           >
             <span className="font-mono text-sm text-muted-foreground">{item.period}</span>
