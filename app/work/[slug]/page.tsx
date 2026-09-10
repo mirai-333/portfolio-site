@@ -167,37 +167,58 @@ export default async function ProjectDetailPage({
           </p>
         </div>
 
-        <div className="mt-12 space-y-4">
-          {project.process.map((step, index) => (
-            <article
-              key={step.title}
-              className="grid gap-5 rounded-3xl border border-border/80 bg-card/55 p-6 backdrop-blur-sm sm:grid-cols-[4.5rem_1fr] sm:p-8"
-            >
-              <div>
-                <span className="font-mono text-xs text-brand/70">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </div>
-              <div className="min-w-0">
-                <h3 className="text-lg font-semibold leading-7 text-foreground">
-                  {step.title.replace(/^\d+\.\s*/, '')}
-                </h3>
-                <p className="mt-3 w-full whitespace-pre-line leading-8 text-muted-foreground">
-                  {step.body}
-                </p>
-                {step.image && (
-                  <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={step.image}
-                      alt={step.imageAlt ?? ''}
-                      className="h-auto w-full object-cover"
-                    />
-                  </figure>
-                )}
-              </div>
-            </article>
-          ))}
+        <div className="relative mt-14">
+          <div
+            aria-hidden="true"
+            className="absolute bottom-5 left-[1.15rem] top-5 w-px bg-gradient-to-b from-brand/70 via-violet-400/35 to-cyan-400/15 sm:left-[2.25rem]"
+          />
+
+          <div className="space-y-12 sm:space-y-16">
+            {project.process.map((step, index) => (
+              <article
+                key={step.title}
+                className="group relative grid grid-cols-[2.4rem_1fr] gap-5 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
+              >
+                <div className="relative flex justify-center pt-1">
+                  <div className="relative z-10 flex size-9 items-center justify-center rounded-full border border-brand/30 bg-background font-mono text-[10px] text-brand shadow-[0_0_0_6px_var(--background)] transition-all duration-300 group-hover:scale-110 group-hover:border-brand group-hover:bg-brand group-hover:text-brand-foreground sm:size-11 sm:text-xs">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[0.85rem] size-3 rounded-full bg-brand/25 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:top-[1.05rem]"
+                  />
+                </div>
+
+                <div className="min-w-0 pb-2 transition-transform duration-300 ease-out group-hover:translate-x-1 sm:pb-4">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-brand/55 sm:text-[11px]">
+                      STEP {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-xl font-semibold leading-8 tracking-tight text-foreground sm:text-2xl">
+                      {step.title.replace(/^\d+\.\s*/, '')}
+                    </h3>
+                  </div>
+
+                  <div className="mt-4 h-px w-12 bg-gradient-to-r from-brand/65 to-transparent transition-all duration-300 group-hover:w-24" />
+
+                  <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                    {step.body}
+                  </p>
+
+                  {step.image && (
+                    <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={step.image}
+                        alt={step.imageAlt ?? ''}
+                        className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                      />
+                    </figure>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>
