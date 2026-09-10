@@ -15,6 +15,7 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'grocery-time': 'ゲーム',
   'wedo-ux': 'UI・UX',
   'last-ride-survival-protocol': '3Dモデリング',
+  'beyond-the-torii': 'ゲーム',
   pulse: '動画',
   notes: '3Dモデリング',
 }
@@ -24,6 +25,7 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/maxresdefault.jpg',
   'wedo-ux': undefined,
   'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/maxresdefault.jpg',
+  'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/maxresdefault.jpg',
   pulse: undefined,
   notes: undefined,
 }
