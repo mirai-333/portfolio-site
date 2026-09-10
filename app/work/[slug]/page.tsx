@@ -33,10 +33,10 @@ export default async function ProjectDetailPage({
           <span aria-hidden="true">/</span>
           <span>{project.duration}</span>
         </div>
-        <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="mt-4 w-full text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-[3.25rem] lg:text-[3.5rem]">
           {project.title}
         </h1>
-        <p className="mt-6 max-w-3xl text-pretty text-lg leading-8 text-muted-foreground">
+        <p className="mt-6 w-full text-pretty text-lg leading-8 text-muted-foreground">
           {project.overview}
         </p>
 
