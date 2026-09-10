@@ -126,21 +126,15 @@ export function WorkSection() {
                 </div>
 
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                      {project.title}
-                    </h3>
-                    <ArrowUpRight
-                      className="mt-0.5 size-5 shrink-0 text-brand transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </div>
+                  <h3 className="w-full text-xl font-semibold tracking-tight text-foreground">
+                    {project.title}
+                  </h3>
 
-                  <p className="mt-4 line-clamp-3 text-pretty leading-7 text-muted-foreground">
+                  <p className="mt-4 w-full line-clamp-3 text-pretty leading-7 text-muted-foreground">
                     {project.description}
                   </p>
 
-                  <ul className="mt-5 flex flex-wrap gap-2">
+                  <ul className="mt-5 flex w-full flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <li
                         key={tag}
@@ -151,10 +145,14 @@ export function WorkSection() {
                     ))}
                   </ul>
 
-                  <div className="mt-auto flex items-center justify-between pt-7">
+                  <div className="mt-auto flex w-full items-center justify-between pt-7">
                     <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
-                    <span className="font-mono text-[11px] tracking-[0.12em] text-brand/80">
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.12em] text-brand/80">
                       VIEW PROJECT
+                      <ArrowUpRight
+                        className="size-4 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
                     </span>
                   </div>
                 </div>
