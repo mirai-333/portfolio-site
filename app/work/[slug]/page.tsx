@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Code2, Play } from 'lucide-react'
-import { projects } from '@/lib/portfolio-data'
+import { projects } from '@/lib/projects'
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }))
