@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Github, Youtube } from 'lucide-react'
+import { ArrowLeft, Code2, Play } from 'lucide-react'
 import { projects } from '@/lib/portfolio-data'
 
 export function generateStaticParams() {
@@ -56,14 +56,14 @@ export default async function ProjectDetailPage({
             href={project.youtubeUrl ?? '#'}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
           >
-            <Youtube className="size-4" aria-hidden="true" />
+            <Play className="size-4" aria-hidden="true" />
             YouTube
           </a>
           <a
             href={project.githubUrl ?? '#'}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
           >
-            <Github className="size-4" aria-hidden="true" />
+            <Code2 className="size-4" aria-hidden="true" />
             GitHub
           </a>
         </div>
