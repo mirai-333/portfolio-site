@@ -7,7 +7,6 @@ const links = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
   { href: '#work', label: 'Work' },
-  { href: '#contact', label: 'Contact' },
 ]
 
 export function SiteNav() {

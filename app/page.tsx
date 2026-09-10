@@ -3,7 +3,6 @@ import { HeroSection } from '@/components/hero-section'
 import { AboutSection } from '@/components/about-section'
 import { SkillsSection } from '@/components/skills-section'
 import { WorkSection } from '@/components/work-section'
-import { ContactSection } from '@/components/contact-section'
 import { profile } from '@/lib/portfolio-data'
 
 export default function Page() {
@@ -15,7 +14,6 @@ export default function Page() {
         <WorkSection />
         <AboutSection />
         <SkillsSection />
-        <ContactSection />
       </main>
       <footer className="mx-auto max-w-3xl px-6 py-10">
         <p className="font-mono text-xs text-muted-foreground">
