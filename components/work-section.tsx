@@ -6,18 +6,18 @@ export function WorkSection() {
   return (
     <section id="work" className="border-t border-border py-20">
       <SectionHeading index="03" title="Selected Work" />
-      <ul className="mt-10 divide-y divide-border">
+      <ul className="mt-10 grid gap-3">
         {projects.map((project) => (
           <li key={project.title}>
             <a
               href={project.link ?? '#'}
-              className="group flex flex-col gap-4 py-8 transition-opacity hover:opacity-100 sm:flex-row sm:items-start sm:justify-between"
+              className="group flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:border-brand hover:shadow-sm sm:flex-row sm:items-start sm:justify-between"
             >
               <div className="max-w-xl">
                 <div className="flex items-center gap-2">
                   <h3 className="font-medium text-foreground">{project.title}</h3>
                   <ArrowUpRight
-                    className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
                     aria-hidden="true"
                   />
                 </div>
@@ -26,7 +26,10 @@ export function WorkSection() {
                 </p>
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <li key={tag} className="font-mono text-xs text-muted-foreground">
+                    <li
+                      key={tag}
+                      className="rounded-full bg-brand-soft px-2.5 py-0.5 font-mono text-xs text-brand"
+                    >
                       {tag}
                     </li>
                   ))}

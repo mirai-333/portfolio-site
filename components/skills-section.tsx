@@ -16,7 +16,7 @@ export function SkillsSection() {
               {group.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-border px-3 py-1 text-sm text-foreground"
+                  className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-brand hover:text-brand"
                 >
                   {item}
                 </li>
@@ -26,11 +26,11 @@ export function SkillsSection() {
         ))}
       </div>
 
-      <ol className="mt-16 space-y-10">
+      <ol className="mt-16 space-y-3">
         {career.map((item) => (
           <li
             key={item.company}
-            className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-8"
+            className="grid gap-2 rounded-2xl border border-transparent p-4 transition-colors hover:border-border hover:bg-card sm:grid-cols-[8rem_1fr] sm:gap-8"
           >
             <span className="font-mono text-sm text-muted-foreground">{item.period}</span>
             <div>

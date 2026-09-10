@@ -1,5 +1,6 @@
 import { profile } from '@/lib/portfolio-data'
 import { SectionHeading } from '@/components/section-heading'
+import { ArrowUpRight } from 'lucide-react'
 
 const socials = [
   { label: 'Email', href: `mailto:${profile.email}` },
@@ -17,16 +18,20 @@ export function ContactSection() {
       </p>
       <a
         href={`mailto:${profile.email}`}
-        className="mt-6 inline-block border-b border-foreground pb-1 text-lg font-medium text-foreground transition-opacity hover:opacity-60"
+        className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-sm transition-transform hover:-translate-y-0.5"
       >
         {profile.email}
+        <ArrowUpRight
+          className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          aria-hidden="true"
+        />
       </a>
-      <ul className="mt-10 flex flex-wrap gap-6">
+      <ul className="mt-10 flex flex-wrap gap-2">
         {socials.map((social) => (
           <li key={social.label}>
             <a
               href={social.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-block rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground transition-colors hover:border-brand hover:text-brand"
               target="_blank"
               rel="noreferrer"
             >
