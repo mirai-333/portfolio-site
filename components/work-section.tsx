@@ -18,8 +18,6 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
   'beyond-the-torii': 'ゲーム',
   'stylesnap-motion-vfx': '動画・モーション/VFX',
   'ghost-presence-vfx': '動画・モーション/VFX',
-  pulse: '動画・モーション/VFX',
-  notes: '3Dモデリング',
 }
 
 const projectThumbnailMap: Record<string, string | undefined> = {
@@ -29,13 +27,7 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/maxresdefault.jpg',
   'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/maxresdefault.jpg',
   'stylesnap-motion-vfx': 'https://img.youtube.com/vi/xSLoQvwidnU/maxresdefault.jpg',
-  'ghost-presence-vfx': 'https://img.youtube.com/vi/rAOvy839UHo/maxresdefault.jpg',
-  pulse: undefined,
-  notes: undefined,
-}
-
-const projectTitleMap: Record<string, string> = {
-  'ghost-presence-vfx': 'ALL Choices',
+  'ghost-presence-vfx': 'https://img.youtube.com/vi/hp3qrkdeHbM/maxresdefault.jpg',
 }
 
 export function WorkSection() {
@@ -43,6 +35,7 @@ export function WorkSection() {
 
   const visibleProjects = useMemo(() => {
     return [...projects]
+      .filter((project) => project.slug !== 'pulse' && project.slug !== 'notes')
       .sort((a, b) => Number(b.year) - Number(a.year))
       .filter((project) => {
         if (activeCategory === 'すべて') return true
@@ -57,17 +50,14 @@ export function WorkSection() {
         className="pointer-events-none absolute inset-x-[-10vw] top-12 -z-10 h-[78%] rounded-[4rem] bg-gradient-to-br from-brand/12 via-violet-400/10 to-cyan-300/12 blur-3xl"
       />
 
-      <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-2xl">
-          <SectionHeading index="01" title="制作物" />
-          <p className="mt-4 leading-7 text-muted-foreground">
-            掲載している作品の多くは、大学の課題として制作したものです。授業では完成物だけでなく、制作の途中で何を考え、何を発見し、それをどう改善へつなげたかというプロセスが重視されていました。
-          </p>
-          <p className="mt-3 leading-7 text-muted-foreground">
-            そのため、まずアンケートやリサーチからターゲットユーザーと課題を整理し、得られた結果をもとに方向性を決め、アイデアを出しながら制作を進めています。作品ごとに機能・UI・世界観・映像表現の雰囲気が異なるのは、表現を統一していないからではなく、<span className="font-medium text-foreground">それぞれのターゲットと目的に合わせて意図的に設計を変えているためです。</span>
-          </p>
-        </div>
-        <span className="font-mono text-xs tracking-[0.18em] text-brand">SELECTED WORKS</span>
+      <div className="max-w-2xl">
+        <SectionHeading index="01" title="制作物" />
+        <p className="mt-4 leading-7 text-muted-foreground">
+          掲載している作品の多くは、大学の課題として制作したものです。授業では完成物だけでなく、制作の途中で何を考え、何を発見し、それをどう改善へつなげたかというプロセスが重視されていました。
+        </p>
+        <p className="mt-3 leading-7 text-muted-foreground">
+          そのため、まずアンケートやリサーチからターゲットユーザーと課題を整理し、得られた結果をもとに方向性を決め、アイデアを出しながら制作を進めています。作品ごとに機能・UI・世界観・映像表現の雰囲気が異なるのは、表現を統一していないからではなく、<span className="font-medium text-foreground">それぞれのターゲットと目的に合わせて意図的に設計を変えているためです。</span>
+        </p>
       </div>
 
       <div className="mt-9 flex flex-wrap gap-2.5" aria-label="制作物カテゴリ">
@@ -97,7 +87,6 @@ export function WorkSection() {
           const category = projectCategoryMap[project.slug]
           const thumbnail = projectThumbnailMap[project.slug]
           const youtubeId = project.videoEmbedUrl?.split('/embed/')[1]?.split('?')[0]
-          const displayTitle = projectTitleMap[project.slug] ?? project.title
 
           return (
             <li key={project.slug} className="min-w-0">
@@ -110,7 +99,7 @@ export function WorkSection() {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={thumbnail}
-                      alt={`${displayTitle} サムネイル`}
+                      alt={`${project.title} サムネイル`}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
@@ -125,7 +114,7 @@ export function WorkSection() {
                   {project.videoEmbedUrl ? (
                     <iframe
                       src={`${project.videoEmbedUrl}${project.videoEmbedUrl.includes('?') ? '&' : '?'}autoplay=1&mute=1&controls=0&loop=1${youtubeId ? `&playlist=${youtubeId}` : ''}&modestbranding=1`}
-                      title={`${displayTitle} video preview`}
+                      title={`${project.title} video preview`}
                       className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                       allow="autoplay; encrypted-media; picture-in-picture"
                       tabIndex={-1}
@@ -152,7 +141,7 @@ export function WorkSection() {
 
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="w-full text-xl font-semibold tracking-tight text-foreground">
-                    {displayTitle}
+                    {project.title}
                   </h3>
 
                   <p className="mt-4 w-full line-clamp-3 text-pretty leading-7 text-muted-foreground">
