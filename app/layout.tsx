@@ -19,8 +19,9 @@ const notoSansJP = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: 'Yuki Sato — Software Engineer',
-  description: 'ソフトウェアエンジニア 佐藤 悠生のポートフォリオ。Webアプリケーション開発、プロダクト設計、実績を掲載しています。',
+  title: '津田みらい — Portfolio',
+  description:
+    '津田みらいのポートフォリオ。VR・AR、ゲーム開発、UI/UX、3Dモデリング、モーション・VFXの制作物と制作プロセスを掲載しています。',
   generator: 'v0.app',
   icons: {
     icon: [

@@ -8,20 +8,22 @@ import { profile } from '@/lib/portfolio-data'
 
 export default function Page() {
   return (
-    <div className="min-h-screen">
+    <div className="relative isolate min-h-screen overflow-x-hidden">
       <TechBackground />
-      <SiteNav />
-      <main className="mx-auto max-w-3xl px-6">
-        <HeroSection />
-        <WorkSection />
-        <AboutSection />
-        <SkillsSection />
-      </main>
-      <footer className="mx-auto max-w-3xl px-6 py-10">
-        <p className="font-mono text-xs text-muted-foreground">
-          © {new Date().getFullYear()} {profile.nameEn}
-        </p>
-      </footer>
+      <div className="relative z-10">
+        <SiteNav />
+        <main className="mx-auto max-w-3xl px-6">
+          <HeroSection />
+          <WorkSection />
+          <AboutSection />
+          <SkillsSection />
+        </main>
+        <footer className="mx-auto max-w-3xl px-6 py-10">
+          <p className="font-mono text-xs text-muted-foreground">
+            © {new Date().getFullYear()} {profile.nameEn}
+          </p>
+        </footer>
+      </div>
     </div>
   )
 }
