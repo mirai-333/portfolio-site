@@ -16,7 +16,7 @@ export function HeroSection() {
       </p>
 
       <h1 className="mt-5 text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.045em] text-foreground sm:text-6xl md:text-7xl">
-        津田 未来
+        津田みらい
         <span className="mt-2 block bg-gradient-to-r from-brand via-violet-500 to-cyan-500 bg-clip-text text-transparent">
           Mirai Tsuda
         </span>
