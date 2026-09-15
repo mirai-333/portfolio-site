@@ -87,6 +87,12 @@ export default async function ProjectDetailPage({
     },
   ]
 
+  const safeRouteStepBodyOverrides: Record<number, string> = {
+    3: 'パネルやアイコン、ボタンなど基本的なUIをAdobe Illustratorで制作しました。VR内で情報量が過剰にならず見やすいことに加え、テクノロジー感も表現できるよう、グローや透過処理を取り入れた水色をメインカラーとして採用し、視認性と世界観のバランスを調整しました。環境やアニメーションに使用した3DモデルはAutodesk Mayaで制作・調整したほか、Sketchfabからダウンロードしたアセットも活用し、Unityへ統合しました。',
+    4: 'UnityでMeta Quest向けVR環境を構築し、移動、Ray Interaction、Grab Interactionなどの基本操作に加え、ゲーム内イベントやフローの管理、地震・津波・NPC・火・ドアなどのアニメーションを実装しました。各Decision PointまたはPhaseでは回答時間と正誤を記録し、終了時に総時間と各フェーズの結果をResult Sceneへ渡して表示できるようにしました。ページ上部のYouTubeから実際のアプリケーション動作を、GitHubからソースコードを確認できます。',
+    6: 'UATでは、シナリオの分かりやすさ、没入感、UI、操作性、学習体験について肯定的な評価を得ました。一方で、同じルートを繰り返すことで慣れが生じる課題も確認されました。テスト結果から、本研究の目的であった避難速度とリスク認知の向上が確認できました。その上で、今後の改善案として、ランダム障害物、ルート変更、追加災害、環境インタラクション、AI NPC、協力プレイなどを改善計画としてまとめました。',
+  }
+
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10 sm:py-16">
       <Link
@@ -259,6 +265,9 @@ export default async function ProjectDetailPage({
             {project.process.map((step, index) => {
               const isSafeRouteResearchStep = isSafeRoute && index === 0
               const isSafeRouteScenarioStep = isSafeRoute && index === 2
+              const stepBody = isSafeRoute
+                ? safeRouteStepBodyOverrides[index] ?? step.body
+                : step.body
 
               return (
                 <article
@@ -421,7 +430,7 @@ export default async function ProjectDetailPage({
                       </div>
                     ) : (
                       <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
-                        {step.body}
+                        {stepBody}
                       </p>
                     )}
 
