@@ -19,6 +19,19 @@ export default async function ProjectDetailPage({
 
   const showVideoSection = Boolean(project.videoEmbedUrl)
   const displayTitle = project.slug === 'ghost-presence-vfx' ? 'ALL Choices' : project.title
+  const isSafeRoute = project.slug === 'saferoute-vr'
+
+  const displayDuration = isSafeRoute
+    ? '2026年4月 — 2026年7月（約8か月）（2025年12月-2026年3月までIR）'
+    : project.duration
+
+  const displayOverview = isSafeRoute
+    ? '日本での災害経験や、学んできた災害に関しての知識を使い、安全なVR空間で従来よりリアルな災害避難訓練をできるようにすることを目的とした卒業研究です。従来の避難訓練では再現しにくい、物理的・心理的要因である環境の変動性・複雑さや、緊張感・切迫感などを含めました。アンケートと地震または津波経験者へのインタビューから課題を抽出し、屋外の津波避難と屋内の地震対応という2つのシナリオ、時間制限付きの判断ポイント、二次災害、行動時間の記録、結果フィードバックを統合しました。'
+    : project.overview
+
+  const displayTags = isSafeRoute
+    ? ['Unity', 'Adobe Illustrator', 'Autodesk Maya', 'Mixamo']
+    : project.tags
 
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10 sm:py-16">
@@ -34,19 +47,33 @@ export default async function ProjectDetailPage({
         <div className="flex flex-wrap items-center gap-3 font-mono text-sm text-muted-foreground">
           <span>{project.year}</span>
           <span aria-hidden="true">/</span>
-          <span>{project.duration}</span>
+          <span>{displayDuration}</span>
         </div>
 
         <h1 className="mt-4 w-full text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-foreground sm:text-[3.25rem] lg:text-[3.5rem]">
           {displayTitle}
         </h1>
 
+        {isSafeRoute && (
+          <div className="mt-8 w-full rounded-3xl border border-brand/15 bg-card/60 p-5 backdrop-blur-sm sm:p-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
+              Thesis title
+            </p>
+            <p className="mt-3 text-sm font-medium leading-7 text-foreground sm:text-base">
+              Enhancing Evacuation Speed and Risk Awareness among Young Adults for Tsunami and Earthquake through an Integrated Virtual Reality Training System
+            </p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+              統合型VR訓練システムによる若年層の津波・地震避難速度およびリスク認知の向上
+            </p>
+          </div>
+        )}
+
         <p className="mt-6 w-full text-pretty text-lg leading-8 text-muted-foreground">
-          {project.overview}
+          {displayOverview}
         </p>
 
         <ul className="mt-6 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
+          {displayTags.map((tag) => (
             <li
               key={tag}
               className="rounded-full bg-brand-soft px-3 py-1 font-mono text-xs text-brand"
