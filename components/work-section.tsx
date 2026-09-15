@@ -58,6 +58,9 @@ export function WorkSection() {
         <p className="mt-3 leading-7 text-muted-foreground">
           そのため、まずアンケートやリサーチからターゲットユーザーと課題を整理し、得られた結果をもとに方向性を決め、アイデアを出しながら制作を進めています。作品ごとに機能・UI・世界観・映像表現の雰囲気が異なるのは、表現を統一していないからではなく、<span className="font-medium text-foreground">それぞれのターゲットと目的に合わせて意図的に設計を変えているためです。</span>
         </p>
+        <p className="mt-3 leading-7 text-muted-foreground">
+          各制作物の詳細ページでは、制作プロセスや試行錯誤についても紹介しています。<span className="font-medium text-foreground">作品そのものとあわせて、どのように考えながら形にしていったのかもぜひご覧ください。</span>
+        </p>
       </div>
 
       <div className="mt-9 flex flex-wrap gap-2.5" aria-label="制作物カテゴリ">
