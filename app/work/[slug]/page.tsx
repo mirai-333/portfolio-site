@@ -33,6 +33,27 @@ export default async function ProjectDetailPage({
     ? ['Unity', 'Adobe Illustrator', 'Autodesk Maya', 'Mixamo']
     : project.tags
 
+  const safeRouteResearchBlocks = [
+    {
+      label: 'Literature Review',
+      body:
+        '若年層が地震・津波発生時になぜ避難を遅らせるのか、従来の避難訓練にはどのような限界があるのか、そしてVRを活用した避難訓練がどのように有効なのかを先行研究から調査しました。あわせて、類似システムであるSamwoo Immersion、SkillsVR、VR Planetを比較し、それぞれの目的、UIガイド、体験内容、強み・弱みを整理しました。これにより、既存事例で不足している要素と、本研究で取り入れるべき方向性を明確にしました。',
+      preview: 'Literature review / Existing system comparison',
+    },
+    {
+      label: 'Questionnaire',
+      body:
+        '続いて、日本人・日本人以外の参加者を対象にアンケートを実施し、災害や避難に関する知識、判断傾向、従来の避難訓練で感じる課題、どのような訓練を求めているかを調べました。回答を分けて比較することで、災害経験や知識が少ない人と、日本で災害教育を受けてきた人との間に、認知や判断の違いがどの程度あるのかも確認しました。これらの結果は、単に災害状況を体験させるだけではなく、どのような学習要素や体験を組み込めば、より適切な判断や避難速度の向上につながるのかを考える基盤になりました。',
+      preview: 'Questionnaire results / Comparative analysis',
+    },
+    {
+      label: 'Interview',
+      body:
+        'さらに、実際に地震または津波を経験した人へのインタビューを行いました。発災時にどこにいたのか、何が起きたのか、そのときどのように感じたのか、実際にどのような判断や避難行動を取ったのかを聞き取りました。アンケートだけでは得にくい、緊張や混乱、周囲の状況によって判断が変化する様子を把握し、VRシナリオに現実的な心理的・環境的要因を取り入れるための参考にしました。',
+      preview: 'Interview findings / Disaster experience analysis',
+    },
+  ]
+
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10 sm:py-16">
       <Link
@@ -202,50 +223,84 @@ export default async function ProjectDetailPage({
           />
 
           <div className="space-y-12 sm:space-y-16">
-            {project.process.map((step, index) => (
-              <article
-                key={step.title}
-                className="group relative grid grid-cols-[2.4rem_1fr] gap-5 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
-              >
-                <div className="relative flex justify-center pt-1">
-                  <div className="relative z-10 flex size-9 items-center justify-center rounded-full border border-brand/30 bg-background font-mono text-[10px] text-brand shadow-[0_0_0_6px_var(--background)] transition-all duration-300 group-hover:scale-110 group-hover:border-brand group-hover:bg-brand group-hover:text-brand-foreground sm:size-11 sm:text-xs">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-[0.85rem] size-3 rounded-full bg-brand/25 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:top-[1.05rem]"
-                  />
-                </div>
+            {project.process.map((step, index) => {
+              const isSafeRouteResearchStep = isSafeRoute && index === 0
 
-                <div className="min-w-0 pb-2 transition-transform duration-300 ease-out group-hover:translate-x-1 sm:pb-4">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <span className="font-mono text-[10px] tracking-[0.18em] text-brand/55 sm:text-[11px]">
-                      STEP {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-xl font-semibold leading-8 tracking-tight text-foreground sm:text-2xl">
-                      {step.title.replace(/^\d+\.\s*/, '')}
-                    </h3>
+              return (
+                <article
+                  key={step.title}
+                  className="group relative grid grid-cols-[2.4rem_1fr] gap-5 sm:grid-cols-[4.5rem_1fr] sm:gap-8"
+                >
+                  <div className="relative flex justify-center pt-1">
+                    <div className="relative z-10 flex size-9 items-center justify-center rounded-full border border-brand/30 bg-background font-mono text-[10px] text-brand shadow-[0_0_0_6px_var(--background)] transition-all duration-300 group-hover:scale-110 group-hover:border-brand group-hover:bg-brand group-hover:text-brand-foreground sm:size-11 sm:text-xs">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span
+                      aria-hidden="true"
+                      className="absolute top-[0.85rem] size-3 rounded-full bg-brand/25 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:top-[1.05rem]"
+                    />
                   </div>
 
-                  <div className="mt-4 h-px w-12 bg-gradient-to-r from-brand/65 to-transparent transition-all duration-300 group-hover:w-24" />
+                  <div className="min-w-0 pb-2 transition-transform duration-300 ease-out group-hover:translate-x-1 sm:pb-4">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="font-mono text-[10px] tracking-[0.18em] text-brand/55 sm:text-[11px]">
+                        STEP {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="text-xl font-semibold leading-8 tracking-tight text-foreground sm:text-2xl">
+                        {isSafeRouteResearchStep
+                          ? 'Literature Review・ユーザーリサーチ'
+                          : step.title.replace(/^\d+\.\s*/, '')}
+                      </h3>
+                    </div>
 
-                  <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
-                    {step.body}
-                  </p>
+                    <div className="mt-4 h-px w-12 bg-gradient-to-r from-brand/65 to-transparent transition-all duration-300 group-hover:w-24" />
 
-                  {step.image && (
-                    <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={step.image}
-                        alt={step.imageAlt ?? ''}
-                        className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                      />
-                    </figure>
-                  )}
-                </div>
-              </article>
-            ))}
+                    {isSafeRouteResearchStep ? (
+                      <div className="mt-6 space-y-8">
+                        {safeRouteResearchBlocks.map((block) => (
+                          <section key={block.label} className="grid gap-4 md:grid-cols-[1fr_13rem] md:items-start md:gap-6">
+                            <div>
+                              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand/75">
+                                {block.label}
+                              </p>
+                              <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                                {block.body}
+                              </p>
+                            </div>
+
+                            <div className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
+                              <div>
+                                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">
+                                  Image preview
+                                </p>
+                                <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                                  {block.preview}
+                                </p>
+                              </div>
+                            </div>
+                          </section>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                        {step.body}
+                      </p>
+                    )}
+
+                    {!isSafeRouteResearchStep && step.image && (
+                      <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={step.image}
+                          alt={step.imageAlt ?? ''}
+                          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
+                        />
+                      </figure>
+                    )}
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
