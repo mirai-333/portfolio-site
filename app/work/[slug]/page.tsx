@@ -54,6 +54,39 @@ export default async function ProjectDetailPage({
     },
   ]
 
+  const scenarioRows = [
+    {
+      outdoorLabel: '判断ポイント1',
+      outdoor: '海を確認する / 上に逃げる',
+      indoorLabel: 'フェーズ1',
+      indoor: '20秒以内に机の下に潜る',
+    },
+    {
+      outdoorLabel: '判断ポイント2',
+      outdoor: '近道の橋を渡る（海に近い） / 海から離れ、より高い場所へ向かう',
+      indoorLabel: 'フェーズ2',
+      indoor: '30秒以内に火を消し、ドアを開ける',
+    },
+    {
+      outdoorLabel: '判断ポイント3',
+      outdoor: '障害物をまたいで進む / 遠回りでも障害物のない道を進む',
+      indoorLabel: 'フェーズ3',
+      indoor: 'リュックに避難用荷物を適切なものだけ詰める',
+    },
+    {
+      outdoorLabel: '判断ポイント4',
+      outdoor: '人が向かう方へ進む / 避難看板に従う',
+      indoorLabel: '',
+      indoor: '—',
+    },
+    {
+      outdoorLabel: '判断ポイント5',
+      outdoor: '階段 / エレベーター',
+      indoorLabel: '',
+      indoor: '—',
+    },
+  ]
+
   return (
     <main className="mx-auto min-h-screen max-w-4xl px-6 py-10 sm:py-16">
       <Link
@@ -225,6 +258,7 @@ export default async function ProjectDetailPage({
           <div className="space-y-12 sm:space-y-16">
             {project.process.map((step, index) => {
               const isSafeRouteResearchStep = isSafeRoute && index === 0
+              const isSafeRouteScenarioStep = isSafeRoute && index === 2
 
               return (
                 <article
@@ -249,7 +283,9 @@ export default async function ProjectDetailPage({
                       <h3 className="text-xl font-semibold leading-8 tracking-tight text-foreground sm:text-2xl">
                         {isSafeRouteResearchStep
                           ? 'Literature Review・ユーザーリサーチ'
-                          : step.title.replace(/^\d+\.\s*/, '')}
+                          : isSafeRouteScenarioStep
+                            ? 'シナリオ・環境設計'
+                            : step.title.replace(/^\d+\.\s*/, '')}
                       </h3>
                     </div>
 
@@ -281,13 +317,115 @@ export default async function ProjectDetailPage({
                           </section>
                         ))}
                       </div>
+                    ) : isSafeRouteScenarioStep ? (
+                      <div className="mt-6 space-y-9">
+                        <div>
+                          <p className="text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                            まず、屋外と屋内それぞれで、どのような避難訓練を取り入れるかを整理し、それに対応するマップをスケッチしました。屋外シナリオでは、ビーチや建物が多い場所、広い道路、そして避難場所までの導線を長くしすぎないことを条件として考えました。そのため、これらの要素が比較的近い範囲にまとまっているお台場海浜公園周辺を参考に、環境と避難ルートを設計しました。
+                          </p>
+
+                          <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card/60">
+                            <table className="w-full min-w-[700px] border-collapse text-left">
+                              <thead>
+                                <tr className="border-b border-border bg-brand-soft/45">
+                                  <th className="w-[8rem] px-4 py-4 text-sm font-semibold text-foreground">項目</th>
+                                  <th className="px-4 py-4 text-sm font-semibold text-foreground">屋外シナリオ</th>
+                                  <th className="px-4 py-4 text-sm font-semibold text-foreground">屋内シナリオ</th>
+                                </tr>
+                                <tr className="border-b border-border/80">
+                                  <th className="px-4 py-4 text-xs font-medium text-muted-foreground">イメージ</th>
+                                  <th className="px-4 py-4">
+                                    <div className="flex min-h-24 items-center justify-center rounded-xl border border-dashed border-brand/25 bg-brand-soft/30 px-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-brand/65">
+                                      画像プレビュー
+                                    </div>
+                                  </th>
+                                  <th className="px-4 py-4">
+                                    <div className="flex min-h-24 items-center justify-center rounded-xl border border-dashed border-brand/25 bg-brand-soft/30 px-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-brand/65">
+                                      画像プレビュー
+                                    </div>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {scenarioRows.map((row) => (
+                                  <tr key={row.outdoorLabel} className="border-b border-border/70 last:border-b-0 align-top">
+                                    <th className="px-4 py-4 text-xs font-medium text-muted-foreground">
+                                      {row.outdoorLabel}
+                                    </th>
+                                    <td className="px-4 py-4 text-sm leading-6 text-foreground">
+                                      {row.outdoor}
+                                    </td>
+                                    <td className="px-4 py-4 text-sm leading-6 text-foreground">
+                                      {row.indoorLabel && (
+                                        <span className="mb-1 block text-xs font-medium text-brand/75">
+                                          {row.indoorLabel}
+                                        </span>
+                                      )}
+                                      {row.indoor}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        <section>
+                          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand/75">
+                            行動内容の根拠
+                          </p>
+                          <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                            これらの内容が避難訓練として妥当であることを裏付けるため、ゲーム内のルート選択や必要な行動は、日本の行政機関が公開している防災情報をもとに設計しました。避難時の判断をゲーム的な演出だけで作るのではなく、現実の防災行動に基づいて体験へ落とし込んでいます。
+                          </p>
+                          <div className="mt-4 flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
+                              <p className="mt-2 text-xs leading-5 text-muted-foreground">行政機関の防災情報・行動根拠</p>
+                            </div>
+                          </div>
+                        </section>
+
+                        <section>
+                          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand/75">
+                            ストーリーボード・UIイメージ
+                          </p>
+                          <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                            次に、シナリオ全体の流れと画面の方向性を明確にするため、ストーリーボードとUIのイメージ図を作成しました。これらは、構想をもとにAIを活用して作成したもので、完成イメージや体験の雰囲気を早い段階で共有・整理することを目的としています。
+                          </p>
+                          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                            {['ストーリーボード', 'UIイメージ'].map((label) => (
+                              <div key={label} className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
+                                <div>
+                                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
+                                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{label}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </section>
+
+                        <section>
+                          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand/75">
+                            フロー・実装構造の整理
+                          </p>
+                          <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
+                            その後、体験全体のフローを洗い出し、必要なUI画面・シーン構成・イベントの流れを整理しました。あわせて、開発時にどのような構造でスクリプトを組み立てるかも検討し、各機能やイベントの関係を事前に整理してから実装へ進みました。
+                          </p>
+                          <div className="mt-4 flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
+                            <div>
+                              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
+                              <p className="mt-2 text-xs leading-5 text-muted-foreground">フロー図・実装構造</p>
+                            </div>
+                          </div>
+                        </section>
+                      </div>
                     ) : (
                       <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
                         {step.body}
                       </p>
                     )}
 
-                    {!isSafeRouteResearchStep && step.image && (
+                    {!isSafeRouteResearchStep && !isSafeRouteScenarioStep && step.image && (
                       <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
