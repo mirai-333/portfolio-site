@@ -20,6 +20,7 @@ export default async function ProjectDetailPage({
   const showVideoSection = Boolean(project.videoEmbedUrl)
   const displayTitle = project.slug === 'ghost-presence-vfx' ? 'ALL Choices' : project.title
   const isSafeRoute = project.slug === 'saferoute-vr'
+  const isGroceryTime = project.slug === 'grocery-time'
 
   const displayDuration = isSafeRoute
     ? '2026年4月 — 2026年7月（約8か月）（2025年12月-2026年3月までIR）'
@@ -27,11 +28,15 @@ export default async function ProjectDetailPage({
 
   const displayOverview = isSafeRoute
     ? '日本での災害経験や、学んできた災害に関しての知識を使い、安全なVR空間で従来よりリアルな災害避難訓練をできるようにすることを目的とした卒業研究です。従来の避難訓練では再現しにくい、物理的・心理的要因である環境の変動性・複雑さや、緊張感・切迫感などを含めました。アンケートと地震または津波経験者へのインタビューから課題を抽出し、屋外の津波避難と屋内の地震対応という2つのシナリオ、時間制限付きの判断ポイント、二次災害、行動時間の記録、結果フィードバックを統合しました。'
-    : project.overview
+    : isGroceryTime
+      ? 'Grocery Time!は、現実のスーパーに近いVR空間で買い物を体験しながら、予算管理と「必要なもの / 欲しいもの」の判断を学ぶ教育ゲームです。プレイヤーは制限時間と予算の中で商品を探し、カートへ入れ、セルフレジで会計し、最後にスコア・残金・ミスのフィードバックを受けます。私は3人チームの中でDevelopmentを担当し、Unity上でゲーム進行や各システムの実装を中心に行いました。\n\n本作は、立体視による奥行き知覚とVRの没入感を活かしたアプリケーションを企画・開発する課題「Stereoscopic Vision System」の一環として制作しました。'
+      : project.overview
 
   const displayTags = isSafeRoute
     ? ['Unity', 'Adobe Illustrator', 'Autodesk Maya', 'Mixamo']
-    : project.tags
+    : isGroceryTime
+      ? ['Unity', 'Visual Studio Code', 'Canva']
+      : project.tags
 
   const safeRouteResearchBlocks = [
     {
@@ -128,7 +133,7 @@ export default async function ProjectDetailPage({
           </div>
         )}
 
-        <p className="mt-6 w-full text-pretty text-lg leading-8 text-muted-foreground">
+        <p className="mt-6 w-full whitespace-pre-line text-pretty text-lg leading-8 text-muted-foreground">
           {displayOverview}
         </p>
 
