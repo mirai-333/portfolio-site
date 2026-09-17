@@ -58,6 +58,51 @@ export default async function ProjectDetailPage({
     'ユーザーテスト',
   ]
 
+  const weDoProcess = [
+    {
+      title: '01. 問題定義',
+      body: '出発点は、共同生活、旅行、大学のグループ課題で感じた「一部の人だけが管理を抱える」「誰がどれだけ貢献したか分からない」という経験でした。最初は匿名意見箱や貢献度の可視化を重要だと考えていましたが、自分の経験だけを一般化せず、実際のグループ活動で何が起きているかを調査して仮説を検証することにしました。',
+    },
+    {
+      title: '02. ターゲットユーザー定義',
+      body: '大学のグループ課題、旅行、共同生活など、日常の小規模なグループ活動に参加する18〜25歳を中心に対象を設定しました。仕事向けの管理ツールほど複雑ではなく、チャットだけでは整理しきれない情報や進捗を、負担を増やさず扱える体験を目指しました。',
+    },
+    {
+      title: '03. アンケート調査',
+      body: '18〜25歳を中心とする32名にオンラインアンケートを実施しました。利用ツール、スケジュール調整、タスク進捗、過去の決定の確認方法、公平感、困っていることを、選択式と自由回答で調査しました。その結果、重要情報がチャットに埋もれる、担当や進捗が見えない、ファイルやリンクが分散するという問題に加え、「ステータス更新自体が面倒」という声も把握しました。',
+    },
+    {
+      title: '04. 主要ユーザーの特定',
+      body: 'アンケートで見えた課題から、グループの調整や情報整理を担う人と、自分の担当や全体の状況を知りたい参加者のニーズに注目しました。「管理する人だけに負担を集中させず、参加者も次の行動を把握できること」を、以降の体験設計で考える軸にしました。',
+    },
+    {
+      title: '05. ペルソナ・エンパシーマップ',
+      body: '調査結果をもとに、調整役になりやすく見えない管理負担を抱えるAlexと、自分の担当や全体状況を把握したいMikaという2つのペルソナを作成し、エンパシーマップでもユーザーの状況を整理しました。「進捗が分からない」を進捗・担当・状態の可視化というニーズへ、「更新が面倒」を会話に近い方法で素早く記録できる必要性へと言い換えました。',
+    },
+    {
+      title: '06. カードソーティング・IA設計',
+      body: 'カードソーティングを行い、機能同士の関係から情報アーキテクチャ（IA）を作成しました。特にTrackingとArchiveの境界を検討し、「今の状態を見る＝Tracking」「あとから記録を探す＝Archive」と、ユーザーの時間軸に合わせて分けました。進捗確認、情報の振り返り、タスク管理などを、利用目的ごとに整理しました。',
+    },
+    {
+      title: '07. ワイヤーフレーム',
+      body: 'IAをもとに画面の構造と情報の優先順位をワイヤーフレームへ落とし込みました。特にWorkspaceの切り替えは、頻繁に使うため見つけやすさが必要な一方、常に目立ちすぎると作業への集中を妨げます。何度も案を検討し、「見えるけれど邪魔しない」配置を探りました。',
+    },
+    {
+      title: '08. インタラクティブプロトタイプ',
+      body: 'Figmaで操作可能なプロトタイプを作成しました。Workspace作成からAIによるTask Board生成までの初回体験と、6週間利用した後に進捗確認・ミーティング設定を行う継続利用の2つのユーザーフローを設計し、画面同士のつながりや操作の流れを確認できる形にしました。',
+    },
+    {
+      title: '09. ハイフィデリティUI',
+      body: '初期案ではHomeに情報や区切りを詰め込みすぎて複雑に見えたため、要素を減らして視線の優先順位を整理しました。青系の柔らかいグラデーション、白を多く使ったカード、丸み、Glass表現を採用し、管理ツール特有の硬さやストレスを抑えながら、必要な情報を確認しやすいUIを目指しました。',
+    },
+    {
+      title: '10. ユーザーテスト',
+      body: '6名にFigmaプロトタイプを画面共有で操作してもらい、進捗確認、過去の会議Agenda確認、ミーティング設定、自分の進捗記録を実施しました。Workspace切り替えが目立ちすぎる、Logボタンが大きく意味が分かりにくい、文言が曖昧、AI Meetingを見つけにくい、File画面の情報階層が分かりづらい、といった課題が見つかりました。結果を受け、Workspace SelectorとLogボタンのサイズを調整し、横スワイプでの切り替え、ラベルの明確化、File画面の情報整理を行いました。AI Meetingには初回説明が必要だと判断しました。機能を増やすほど便利になるとは限らず、認知負荷やユーザーの感情、グループ内の関係まで考えることが重要だと学びました。',
+    },
+  ]
+
+  const displayProcess = isWeDo ? weDoProcess : project.process
+
   const safeRouteResearchBlocks = [
     {
       label: 'Literature Review',
@@ -226,34 +271,6 @@ export default async function ProjectDetailPage({
         </section>
       )}
 
-      {isWeDo && (
-        <section className="border-b border-border py-12" aria-labelledby="wedo-design-process">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">UX methodology</p>
-              <h2 id="wedo-design-process" className="mt-2 text-2xl font-semibold tracking-tight text-foreground">UX設計プロセス</h2>
-            </div>
-            <span className="rounded-full border border-brand/20 bg-brand-soft px-3 py-1 font-mono text-xs text-brand">全10工程</span>
-          </div>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">問題の発見からユーザーの理解、情報設計、画面制作、テストまでの流れです。</p>
-          <ol className="mt-7 grid grid-cols-1 gap-x-5 gap-y-0 sm:grid-cols-2">
-            {weDoDesignSteps.map((step, index) => (
-              <li key={step} className="relative pb-5 last:pb-0 sm:pb-6 sm:last:pb-6">
-                <div className="flex min-h-20 items-center gap-3 rounded-2xl border border-brand/15 bg-card/70 px-4 py-3 shadow-sm">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-soft font-mono text-xs font-semibold text-brand">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span className="text-sm font-medium leading-6 text-foreground">{step}</span>
-                </div>
-                {index < weDoDesignSteps.length - 1 && (
-                  <span aria-hidden="true" className="absolute bottom-0 left-8 flex h-5 items-center justify-center text-sm text-brand/50 sm:bottom-1">↓</span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
       {project.caseStudyType === 'ux' && project.highlights && (
         <section className="border-b border-border py-14">
           <div className="grid gap-5 md:grid-cols-3">
@@ -306,6 +323,19 @@ export default async function ProjectDetailPage({
             {project.processIntro ??
               '企画・設計から実装、テスト、改善まで、制作の流れとその中で取り組んだ内容を工程ごとにまとめています。'}
           </p>
+          {isWeDo && (
+            <nav className="mt-7 rounded-2xl border border-brand/15 bg-brand-soft/25 px-4 py-4 sm:px-5" aria-label="UX設計プロセスの順序">
+              <ol className="flex flex-wrap items-center gap-x-2 gap-y-2">
+                {weDoDesignSteps.map((step, index) => (
+                  <li key={step} className="inline-flex items-center gap-2 text-xs leading-5 text-foreground">
+                    <span className="font-mono text-[10px] font-semibold text-brand">{String(index + 1).padStart(2, '0')}</span>
+                    <span>{step}</span>
+                    {index < weDoDesignSteps.length - 1 && <span aria-hidden="true" className="text-brand/45">→</span>}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
         </div>
 
         <div className="relative mt-14">
@@ -315,7 +345,7 @@ export default async function ProjectDetailPage({
           />
 
           <div className="space-y-12 sm:space-y-16">
-            {project.process.map((step, index) => {
+            {displayProcess.map((step, index) => {
               const isSafeRouteResearchStep = isSafeRoute && index === 0
               const isSafeRouteScenarioStep = isSafeRoute && index === 2
               const stepBody = isSafeRoute
