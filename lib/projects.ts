@@ -67,8 +67,8 @@ const ghostVfx: Project = {
     'ALL Choicesは、視聴者の選択によって次の展開が変わるインタラクティブ映像作品です。課題条件として「選択肢によって分岐する構成」が指定されていたため、一つの長い動画に分岐を埋め込むのではなく、複数のYouTube動画を用意し、終了画面の次動画への導線を使って選択肢を作りました。視聴者は映像の最後で選択し、それぞれ異なる動画へ進むことで物語を体験します。私はVFXを担当し、特にゴーストが実際にその空間に存在しているように見えることと、視聴者の恐怖を徐々に高めることを重視しました。',
   role: 'VFX',
   duration: '大学課題 / インタラクティブ映像制作',
-  youtubeUrl: 'https://youtu.be/hp3qrkdeHbM?si=FXxAaCJKgNx0Fv6E',
-  videoEmbedUrl: 'https://www.youtube.com/embed/hp3qrkdeHbM',
+  youtubeUrl: 'https://youtu.be/rAOvy839UHo?si=QA1Q2zU9cYWhVKNJ',
+  videoEmbedUrl: 'https://www.youtube.com/embed/rAOvy839UHo',
   facts: [
     { label: '担当', value: 'VFX' },
     { label: '主要技法', value: 'Motion Tracking / Noise / Color Grading / Speed Adjustment' },
