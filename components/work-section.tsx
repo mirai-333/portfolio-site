@@ -21,13 +21,13 @@ const projectCategoryMap: Record<string, Exclude<WorkCategory, 'すべて'>> = {
 }
 
 const projectThumbnailMap: Record<string, string | undefined> = {
-  'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/hqdefault.jpg',
-  'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/hqdefault.jpg',
+  'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/hqdefault.jpg?v=20260917',
+  'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/hqdefault.jpg?v=20260917',
   'wedo-ux': undefined,
-  'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/hqdefault.jpg',
-  'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/hqdefault.jpg',
-  'stylesnap-motion-vfx': 'https://img.youtube.com/vi/xSLoQvwidnU/hqdefault.jpg',
-  'ghost-presence-vfx': 'https://img.youtube.com/vi/hp3qrkdeHbM/hqdefault.jpg',
+  'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/hqdefault.jpg?v=20260917',
+  'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/hqdefault.jpg?v=20260917',
+  'stylesnap-motion-vfx': 'https://img.youtube.com/vi/xSLoQvwidnU/hqdefault.jpg?v=20260917',
+  'ghost-presence-vfx': 'https://img.youtube.com/vi/rAOvy839UHo/hqdefault.jpg?v=20260917',
 }
 
 export function WorkSection() {
