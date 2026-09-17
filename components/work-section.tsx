@@ -24,16 +24,16 @@ const projectThumbnailMap: Record<string, string | undefined> = {
   'saferoute-vr': 'https://img.youtube.com/vi/TX7t-ck0Q28/hqdefault.jpg?v=20260917',
   'grocery-time': 'https://img.youtube.com/vi/6hrapMvMPHw/hqdefault.jpg?v=20260917',
   'wedo-ux': '/img_wedo.png',
-  'last-ride-survival-protocol': 'https://img.youtube.com/vi/8jxZgBrZWj8/hqdefault.jpg?v=20260917',
+  'last-ride-survival-protocol': '/Last%20Ride.png',
   'beyond-the-torii': 'https://img.youtube.com/vi/XlPORu96qO4/hqdefault.jpg?v=20260917',
-  'stylesnap-motion-vfx': 'https://img.youtube.com/vi/xSLoQvwidnU/hqdefault.jpg?v=20260917',
-  'ghost-presence-vfx': 'https://img.youtube.com/vi/rAOvy839UHo/hqdefault.jpg?v=20260917',
+  'stylesnap-motion-vfx': '/StyleSnap.png',
+  'ghost-presence-vfx': '/ALL%20Choices.png',
 }
 
 const thumbnailFallbackMap: Record<string, string> = {
-  'last-ride-survival-protocol': 'https://i.ytimg.com/vi/8jxZgBrZWj8/mqdefault.jpg',
-  'stylesnap-motion-vfx': 'https://i.ytimg.com/vi/xSLoQvwidnU/mqdefault.jpg',
-  'ghost-presence-vfx': 'https://i.ytimg.com/vi/rAOvy839UHo/mqdefault.jpg',
+  'last-ride-survival-protocol': '/placeholder.svg',
+  'stylesnap-motion-vfx': '/placeholder.svg',
+  'ghost-presence-vfx': '/placeholder.svg',
 }
 
 export function WorkSection() {
@@ -112,10 +112,8 @@ export function WorkSection() {
                       onError={(event) => {
                         const image = event.currentTarget
                         const fallback = thumbnailFallbackMap[project.slug]
-                        if (fallback && image.src !== fallback) {
+                        if (fallback && image.src !== new URL(fallback, image.baseURI).href) {
                           image.src = fallback
-                        } else if (fallback && !image.src.endsWith('/placeholder.svg')) {
-                          image.src = '/placeholder.svg'
                         }
                       }}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
