@@ -21,6 +21,7 @@ export default async function ProjectDetailPage({
   const displayTitle = project.slug === 'ghost-presence-vfx' ? 'ALL Choices' : project.title
   const isSafeRoute = project.slug === 'saferoute-vr'
   const isGroceryTime = project.slug === 'grocery-time'
+  const isWeDo = project.slug === 'wedo-ux'
 
   const displayDuration = isSafeRoute
     ? '2026年4月 — 2026年7月（約8か月）（2025年12月-2026年3月までIR）'
@@ -36,7 +37,26 @@ export default async function ProjectDetailPage({
     ? ['Unity', 'Adobe Illustrator', 'Autodesk Maya', 'Mixamo']
     : isGroceryTime
       ? ['Unity', 'Visual Studio Code', 'Canva']
-      : project.tags
+      : isWeDo
+        ? ['Figma']
+        : project.tags
+
+  const displayFacts = isWeDo
+    ? project.facts?.filter((fact) => fact.label !== '使用ツール' && fact.label !== '成果物')
+    : project.facts
+
+  const weDoDesignSteps = [
+    '問題定義',
+    'ターゲットユーザー定義',
+    'アンケート調査',
+    '主要ユーザーの特定',
+    'ペルソナ・エンパシーマップ',
+    'カードソーティング・IA設計',
+    'ワイヤーフレーム',
+    'インタラクティブプロトタイプ',
+    'ハイフィデリティUI',
+    'ユーザーテスト',
+  ]
 
   const safeRouteResearchBlocks = [
     {
@@ -187,13 +207,13 @@ export default async function ProjectDetailPage({
         </div>
       </section>
 
-      {project.facts && project.facts.length > 0 && (
+      {displayFacts && displayFacts.length > 0 && (
         <section className="border-b border-border py-10">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
             Project summary
           </p>
           <dl className="mt-6 grid gap-x-10 gap-y-0 sm:grid-cols-2">
-            {project.facts.map((fact) => (
+            {displayFacts.map((fact) => (
               <div
                 key={`${fact.label}-${fact.value}`}
                 className="grid grid-cols-[7rem_1fr] gap-4 border-t border-border/70 py-4 first:border-t-0 sm:first:border-t sm:[&:nth-child(2)]:border-t"
@@ -203,6 +223,34 @@ export default async function ProjectDetailPage({
               </div>
             ))}
           </dl>
+        </section>
+      )}
+
+      {isWeDo && (
+        <section className="border-b border-border py-12" aria-labelledby="wedo-design-process">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">UX methodology</p>
+              <h2 id="wedo-design-process" className="mt-2 text-2xl font-semibold tracking-tight text-foreground">UX設計プロセス</h2>
+            </div>
+            <span className="rounded-full border border-brand/20 bg-brand-soft px-3 py-1 font-mono text-xs text-brand">全10工程</span>
+          </div>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">問題の発見からユーザーの理解、情報設計、画面制作、テストまでの流れです。</p>
+          <ol className="mt-7 grid grid-cols-1 gap-x-5 gap-y-0 sm:grid-cols-2">
+            {weDoDesignSteps.map((step, index) => (
+              <li key={step} className="relative pb-5 last:pb-0 sm:pb-6 sm:last:pb-6">
+                <div className="flex min-h-20 items-center gap-3 rounded-2xl border border-brand/15 bg-card/70 px-4 py-3 shadow-sm">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-soft font-mono text-xs font-semibold text-brand">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-sm font-medium leading-6 text-foreground">{step}</span>
+                </div>
+                {index < weDoDesignSteps.length - 1 && (
+                  <span aria-hidden="true" className="absolute bottom-0 left-8 flex h-5 items-center justify-center text-sm text-brand/50 sm:bottom-1">↓</span>
+                )}
+              </li>
+            ))}
+          </ol>
         </section>
       )}
 
