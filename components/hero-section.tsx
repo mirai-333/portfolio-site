@@ -38,7 +38,7 @@ export function HeroSection() {
         <div className="relative max-w-2xl py-5 sm:py-7">
           <p
             aria-hidden="true"
-            className="pointer-events-none absolute left-2 top-1/2 w-[95%] -translate-y-1/2 select-none whitespace-nowrap text-[2.2rem] font-light italic leading-none tracking-[-0.03em] text-transparent opacity-[0.13] sm:left-5 sm:text-[3.2rem] lg:text-[3.7rem]"
+            className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 select-none whitespace-nowrap text-center text-[2.2rem] font-light italic leading-none tracking-[-0.03em] text-transparent opacity-[0.13] sm:text-[3.2rem] lg:text-[3.7rem]"
             style={{
               fontFamily: 'cursive',
               WebkitTextStroke: '0.45px rgba(124, 102, 255, 0.38)',
