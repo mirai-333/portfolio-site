@@ -1,12 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { profile } from '@/lib/portfolio-data'
 
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#work', label: 'Work' },
+  { href: '#work', label: '制作物' },
+  { href: '#about', label: 'プロフィール' },
+  { href: '#skills', label: 'スキル・経験' },
 ]
 
 export function SiteNav() {
@@ -29,7 +28,7 @@ export function SiteNav() {
         }`}
       >
         <a href="#top" className="font-mono text-sm tracking-tight text-foreground">
-          {profile.nameEn}
+          Mirai Tsuda
         </a>
         <ul className="flex items-center gap-1">
           {links.map((link) => (
