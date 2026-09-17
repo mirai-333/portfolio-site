@@ -61,35 +61,35 @@ export default async function ProjectDetailPage({
   const weDoProcess = [
     {
       title: '01. 問題定義',
-      body: '出発点は、共同生活、旅行、大学のグループ課題で感じた「一部の人だけが管理を抱える」「誰がどれだけ貢献したか分からない」という経験でした。最初は匿名意見箱や貢献度の可視化を重要だと考えていましたが、自分の経験だけを一般化せず、実際のグループ活動で何が起きているかを調査して仮説を検証することにしました。',
+      body: '出発点は、共同生活や大学のグループ課題で感じた「一部の人だけが管理を担う」「自分の担当が不明瞭」「誰がどれだけ貢献したのか分からない」という問題でした。\n\nこの課題では、教員から「日常生活で感じる不満を一つ選び、それを解決するものを制作する」というテーマが提示されていました。そこで、マレーシアでの留学生活を通じて実際に感じた問題に着目しました。\n\nSlackなどの業務向け管理ツールは日常の小規模なグループ活動には複雑で手軽に使いにくい一方、チャットだけでは情報や進捗を十分に整理・可視化できないという課題があると考えました。',
     },
     {
       title: '02. ターゲットユーザー定義',
-      body: '大学のグループ課題、旅行、共同生活など、日常の小規模なグループ活動に参加する18〜25歳を中心に対象を設定しました。仕事向けの管理ツールほど複雑ではなく、チャットだけでは整理しきれない情報や進捗を、負担を増やさず扱える体験を目指しました。',
+      body: '大学のグループ課題、旅行、共同生活、クラブ活動など、日常的に複数の小規模グループ活動に参加する18〜25歳の若年層、特に大学生を主なターゲットユーザーとして設定しました。',
     },
     {
       title: '03. アンケート調査',
-      body: '18〜25歳を中心とする32名にオンラインアンケートを実施しました。利用ツール、スケジュール調整、タスク進捗、過去の決定の確認方法、公平感、困っていることを、選択式と自由回答で調査しました。その結果、重要情報がチャットに埋もれる、担当や進捗が見えない、ファイルやリンクが分散するという問題に加え、「ステータス更新自体が面倒」という声も把握しました。',
+      body: 'グループ活動において参加者がどのような問題を感じているのかを把握するため、18〜25歳を中心とする32名にオンラインアンケートを実施しました。\n\n現在使用しているツール、スケジュール調整、タスク進捗、情報管理、過去の決定事項の確認方法、役割分担の公平感などについて、選択式と自由回答を組み合わせて調査しました。\n\nその結果、重要な情報がチャットに埋もれる、担当や進捗が分からない、ファイルやリンクが分散するという問題に加え、「進捗状況を更新すること自体が面倒」という声も確認できました。また、管理を担う人と、自分の担当作業を進める人では、それぞれ異なる課題を抱えていることも分かりました。\n\n特に着目したのは「他の人の進捗が分からない」という問題です。一般的なタスク管理ツールには進捗ステータスを変更する機能がありますが、更新作業そのものが負担となり、十分に活用されなくなる場合があります。そこで、進捗更新の負担を軽減しながらグループ全体の状況を把握できる、タスクのトラッキングを中心としたアプリを制作する方針を定めました。',
     },
     {
       title: '04. 主要ユーザーの特定',
-      body: 'アンケートで見えた課題から、グループの調整や情報整理を担う人と、自分の担当や全体の状況を知りたい参加者のニーズに注目しました。「管理する人だけに負担を集中させず、参加者も次の行動を把握できること」を、以降の体験設計で考える軸にしました。',
+      body: 'アンケート結果から、グループの調整や情報整理を担う人と、自分の担当や全体の進捗を把握したい参加者の双方に、それぞれ異なる問題があることが分かりました。\n\nそこで、「管理する人だけに負担を集中させず、参加者も簡単に次の行動を把握できること」を、以降の体験設計の軸としました。',
     },
     {
       title: '05. ペルソナ・エンパシーマップ',
-      body: '調査結果をもとに、調整役になりやすく見えない管理負担を抱えるAlexと、自分の担当や全体状況を把握したいMikaという2つのペルソナを作成し、エンパシーマップでもユーザーの状況を整理しました。「進捗が分からない」を進捗・担当・状態の可視化というニーズへ、「更新が面倒」を会話に近い方法で素早く記録できる必要性へと言い換えました。',
+      body: '調査結果をもとに、調整役になりやすく、見えない管理負担を抱えるAlexと、自分の担当やグループ全体の状況を把握したいMikaという2つのペルソナを作成しました。\n\nさらに、エンパシーマップを通じて、それぞれのユーザーの行動、考え、感情、抱えている課題を整理しました。',
     },
     {
       title: '06. カードソーティング・IA設計',
-      body: 'カードソーティングを行い、機能同士の関係から情報アーキテクチャ（IA）を作成しました。特にTrackingとArchiveの境界を検討し、「今の状態を見る＝Tracking」「あとから記録を探す＝Archive」と、ユーザーの時間軸に合わせて分けました。進捗確認、情報の振り返り、タスク管理などを、利用目的ごとに整理しました。',
+      body: 'カードソーティングを行い、機能同士の関係を整理したうえで、情報アーキテクチャ（IA）を作成しました。\n\n特に検討したのは、TrackingとArchiveの役割の違いです。「現在の状況を確認する＝Tracking」「過去の記録を探す＝Archive」と、ユーザーが情報を必要とする時間軸に合わせて分類しました。\n\nこれにより、進捗確認、情報の振り返り、タスク管理などの機能を、利用目的に応じて整理しました。',
     },
     {
       title: '07. ワイヤーフレーム',
-      body: 'IAをもとに画面の構造と情報の優先順位をワイヤーフレームへ落とし込みました。特にWorkspaceの切り替えは、頻繁に使うため見つけやすさが必要な一方、常に目立ちすぎると作業への集中を妨げます。何度も案を検討し、「見えるけれど邪魔しない」配置を探りました。',
+      body: 'IAをもとに、画面構造と情報の優先順位をワイヤーフレームへ落とし込みました。\n\n特に検討を重ねたのが、活動ごとに分かれたWorkspaceの切り替えです。今回のターゲットユーザーは、大学の課題やクラブ活動など、複数のグループに参加していることが想定されます。そのため、Workspaceは見つけやすく、どの画面からでも切り替えられる必要がありました。\n\n一方で、常に目立ちすぎると現在の作業への集中を妨げます。そこで、複数の案を検討し、「見えるけれど邪魔しない」配置を探りました。',
     },
     {
       title: '08. インタラクティブプロトタイプ',
-      body: 'Figmaで操作可能なプロトタイプを作成しました。Workspace作成からAIによるTask Board生成までの初回体験と、6週間利用した後に進捗確認・ミーティング設定を行う継続利用の2つのユーザーフローを設計し、画面同士のつながりや操作の流れを確認できる形にしました。',
+      body: 'Figmaで、基本的な操作が可能なプロトタイプを作成しました。\n\nWorkspaceの切り替えや画面遷移などを実際に操作できるようにし、画面同士のつながりやユーザーの操作動線を確認しました。',
     },
     {
       title: '09. ハイフィデリティUI',
@@ -97,10 +97,24 @@ export default async function ProjectDetailPage({
     },
     {
       title: '10. ユーザーテスト',
-      body: '6名にFigmaプロトタイプを画面共有で操作してもらい、進捗確認、過去の会議Agenda確認、ミーティング設定、自分の進捗記録を実施しました。Workspace切り替えが目立ちすぎる、Logボタンが大きく意味が分かりにくい、文言が曖昧、AI Meetingを見つけにくい、File画面の情報階層が分かりづらい、といった課題が見つかりました。結果を受け、Workspace SelectorとLogボタンのサイズを調整し、横スワイプでの切り替え、ラベルの明確化、File画面の情報整理を行いました。AI Meetingには初回説明が必要だと判断しました。機能を増やすほど便利になるとは限らず、認知負荷やユーザーの感情、グループ内の関係まで考えることが重要だと学びました。',
+      body: '',
     },
   ]
 
+  const weDoTestFindings = [
+    'Workspaceの切り替えが目立ちすぎる',
+    'Logボタンが大きく、意味が分かりにくい',
+    '一部の文言が曖昧',
+    'AI Meeting機能を見つけにくい',
+    'File画面の情報階層が分かりにくい',
+  ]
+  const weDoTestImprovements = [
+    'Workspace Selectorのサイズと視覚的な強さを調整し、横スワイプによる切り替えを追加',
+    'Logボタンを縮小し、他のナビゲーションと統一',
+    '曖昧なラベルを分かりやすい表現に変更',
+    'File画面の情報階層を整理',
+    'AI Meetingには初回利用時の説明が必要だと判断',
+  ]
   const displayProcess = isWeDo ? weDoProcess : project.process
 
   const safeRouteResearchBlocks = [
@@ -511,10 +525,46 @@ export default async function ProjectDetailPage({
                           </div>
                         </section>
                       </div>
+                    ) : isWeDo && index === 9 ? (
+                      <div className="mt-6 space-y-7">
+                        <section>
+                          <p className="font-mono text-xs tracking-[0.15em] text-brand">01 / TEST</p>
+                          <h4 className="mt-2 text-base font-semibold text-foreground">テスト内容</h4>
+                          <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">6名にFigmaプロトタイプを画面共有で操作してもらい、進捗確認、過去の会議Agendaの確認、ミーティング設定、自分の進捗記録という4つのタスクを実施しました。</p>
+                        </section>
+                        <section>
+                          <p className="font-mono text-xs tracking-[0.15em] text-brand">02 / FINDINGS</p>
+                          <h4 className="mt-2 text-base font-semibold text-foreground">発見した課題</h4>
+                          <ul className="mt-3 list-disc space-y-2 pl-5 text-[0.98rem] leading-7 text-muted-foreground">
+                            {weDoTestFindings.map((finding) => <li key={finding}>{finding}</li>)}
+                          </ul>
+                        </section>
+                        <section>
+                          <p className="font-mono text-xs tracking-[0.15em] text-brand">03 / IMPROVEMENTS</p>
+                          <h4 className="mt-2 text-base font-semibold text-foreground">改善内容・次の対応</h4>
+                          <ul className="mt-3 list-disc space-y-2 pl-5 text-[0.98rem] leading-7 text-muted-foreground">
+                            {weDoTestImprovements.map((improvement) => <li key={improvement}>{improvement}</li>)}
+                          </ul>
+                        </section>
+                        <section>
+                          <p className="font-mono text-xs tracking-[0.15em] text-brand">04 / LEARNING</p>
+                          <h4 className="mt-2 text-base font-semibold text-foreground">学び</h4>
+                          <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">機能を増やすことが必ずしも使いやすさにつながるわけではなく、認知負荷やユーザーの感情、グループ内の関係性まで考慮することが重要だと学びました。</p>
+                        </section>
+                      </div>
                     ) : (
                       <p className="mt-5 w-full whitespace-pre-line text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
                         {stepBody}
                       </p>
+                    )}
+
+                    {isWeDo && index >= 4 && index <= 8 && (
+                      <div className="mt-6 flex min-h-44 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-8 text-center" aria-label={`${weDoDesignSteps[index]}の画像を配置予定`}>
+                        <div>
+                          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
+                          <p className="mt-2 text-sm text-muted-foreground">{weDoDesignSteps[index]}の制作資料を配置予定</p>
+                        </div>
+                      </div>
                     )}
 
                     {!isSafeRouteResearchStep && !isSafeRouteScenarioStep && step.image && (
