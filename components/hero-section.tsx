@@ -48,7 +48,7 @@ export function HeroSection() {
               backgroundClip: 'text',
             }}
           >
-            Technology × Design × Experience
+            BEYOND
           </p>
 
           <h2 className="relative z-10 text-balance text-2xl font-semibold leading-relaxed tracking-[-0.025em] text-foreground sm:text-3xl">
