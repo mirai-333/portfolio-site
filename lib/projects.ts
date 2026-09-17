@@ -52,7 +52,7 @@ const styleSnap: Project = {
   process: [
     { title: '01. 体験の整理・Storyboard', body: '最初に、ユーザーが商品を探し、商品詳細を確認し、AR Try-Onを起動し、見た目を確認するまでの体験をStoryboardに整理しました。ARの仕組みを文章だけで説明するのではなく、「どの画面から、どの操作で、何が起きるのか」が映像だけでも理解できる順序を考えました。特に、通常のEC画面とAR体験の切り替わりが唐突に見えないことを意識しました。' },
     { title: '02. 3D Product Modeling', body: 'バーチャル試着の対象として使用する商品モデルのうち4点を制作しました。Autodesk Mayaを使い、コスメやファッションアイテムがAR画面上でも商品として認識できるシルエットと質感になるよう調整しました。映像で使用するため、細部を作り込みすぎるのではなく、カメラ距離と画面上での見え方を基準に情報量を決めました。' },
-    { title: '03. プロモーション映像制作・最終編集', body: '3D商品モデルや画面素材を使い、AR試着の体験が短いプロモーション映像で伝わるように制作しました。商品を選び、カメラを通して試着し、結果を確認するまでの流れが分かるように構成し、After Effectsで画面・商品・テキストに動きを加えました。注目してほしい要素を順番に動かすことで、操作や見せ場へ視線を誘導しました。\n\nまた、通常のショッピング画面とAR試着画面、3D商品が別々の素材に見えないよう、画面サイズ、余白、切り替えのテンポ、商品位置を調整しました。最後に各シーン、3D素材、アニメーションを一つの映像にまとめ、説明不足や流れが途切れる箇所を確認しました。AR試着を初めて見る人にも、「オンライン上で商品を試してから購入を判断できるサービス」であることが伝わる映像を目指しました。' },
+    { title: '03. プロモーション映像制作・最終編集', body: '3D商品モデルや画面素材を使い、AR試着の体験が短いプロモーション映像で伝わるように制作しました。商品を選び、カメラを通して試着し、結果を確認するまでの流れが分かるように構成し、After Effectsで画面・商品・テキストに動きを加えました。注目してほしい要素を順番に動かすことで、操作や見せ場へ視線を誘導しました。\n\nAR試着を初めて見る人にも、「オンライン上で商品を試してから購入を判断できるサービス」であることが伝わる映像を目指しました。' },
   ],
 }
 
@@ -81,8 +81,18 @@ const placeholderSlugs = new Set(['pulse', 'notes'])
 const realProjects = baseProjects.filter((project) => !placeholderSlugs.has(project.slug))
 const placeholders = baseProjects.filter((project) => placeholderSlugs.has(project.slug))
 
+const cardTagOverrides: Record<string, string[]> = {
+  'saferoute-vr': ['Unity', 'Adobe Illustrator', 'Autodesk Maya', 'Mixamo'],
+  'grocery-time': ['Unity', 'Visual Studio Code', 'Canva'],
+  'wedo-ux': ['Figma'],
+}
+
 export const projects: Project[] = [
-  ...realProjects,
+  ...realProjects.map((project) =>
+    cardTagOverrides[project.slug]
+      ? { ...project, tags: cardTagOverrides[project.slug] }
+      : project,
+  ),
   beyondTheTorii,
   styleSnap,
   ghostVfx,
