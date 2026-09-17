@@ -240,6 +240,18 @@ export default async function ProjectDetailPage({
             </a>
           )}
 
+          {project.slug === 'ghost-presence-vfx' && (
+            <a
+              href="https://youtu.be/hp3qrkdeHbM?si=FXxAaCJKgNx0Fv6E"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand hover:text-brand"
+            >
+              <Play className="size-4" aria-hidden="true" />
+              分岐あり？YouTube
+            </a>
+          )}
+
           {project.githubUrl && (
             <a
               href={project.githubUrl}
