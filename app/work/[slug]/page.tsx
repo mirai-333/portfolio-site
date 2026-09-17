@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({
     {
       label: 'Interview',
       body:
-        'さらに、実際に地震または津波を経験した人へのインタビューを行いました。発災時にどこにいたのか、何が起きたのか、そのときどのように感じたのか、実際にどのような判断や避難行動を取ったのかを聞き取りました。アンケートだけでは得にくい、緊張や混乱、周囲の状況によって判断が変化する様子を把握し、VRシナリオに現実的な心理的・環境的要因を取り入れるための参考にしました。',
+        'さらに、実際に地震または津波を経験した人へのインタビューを行いました。発災時にどこにいたのか、何が起きたのか、そのときにどのように感じたのか、実際にどのような判断や避難行動を取ったのかを聞き取りました。アンケートだけでは得にくい、緊張や混乱、周囲の状況によって判断が変化する様子を把握し、VRシナリオに現実的な心理的・環境的要因を取り入れるための参考にしました。',
       preview: 'Interview findings / Disaster experience analysis',
     },
   ]
@@ -325,6 +325,7 @@ export default async function ProjectDetailPage({
         </section>
       )}
 
+      {displayProcess.length > 0 && (
       <section className="py-16">
         <div className="w-full">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-brand">
@@ -567,12 +568,12 @@ export default async function ProjectDetailPage({
                       </div>
                     )}
 
-                    {!isSafeRouteResearchStep && !isSafeRouteScenarioStep && step.image && (
+                    {!isSafeRouteResearchStep && !isSafeRouteScenarioStep && 'image' in step && step.image && (
                       <figure className="mt-7 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={step.image}
-                          alt={step.imageAlt ?? ''}
+                          alt={'imageAlt' in step ? step.imageAlt ?? '' : ''}
                           className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
                         />
                       </figure>
@@ -584,6 +585,7 @@ export default async function ProjectDetailPage({
           </div>
         </div>
       </section>
+      )}
     </main>
   )
 }
