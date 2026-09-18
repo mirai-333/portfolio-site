@@ -18,10 +18,40 @@ const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
 })
 
+const siteUrl = 'https://portfolio-site-six-gold-54.vercel.app'
+const siteTitle = '津田みらい | Mirai Tsuda — Portfolio'
+const siteDescription =
+  '津田みらいのポートフォリオ。VR・AR、ゲーム開発、UI/UX、3Dモデリング、モーション・VFXの制作物と制作プロセスを掲載しています。'
+
 export const metadata: Metadata = {
-  title: '津田みらい — Portfolio',
-  description:
-    '津田みらいのポートフォリオ。VR・AR、ゲーム開発、UI/UX、3Dモデリング、モーション・VFXの制作物と制作プロセスを掲載しています。',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Mirai Tsuda Portfolio',
+    title: siteTitle,
+    description: siteDescription,
+    locale: 'ja_JP',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Mirai Tsuda — Portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/opengraph-image'],
+  },
   generator: 'v0.app',
   icons: {
     icon: [
