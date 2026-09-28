@@ -99,7 +99,7 @@ export const projects: Project[] = [
     role: 'Development',
     duration: 'チーム制作',
     youtubeUrl: 'https://youtu.be/6hrapMvMPHw',
-    githubUrl: 'https://github.com/mirai-333/GroceryTime-',
+    githubUrl: 'https://github.com/mirai-333/GroceryTime',
     videoEmbedUrl: 'https://www.youtube.com/embed/6hrapMvMPHw',
     facts: [
       { label: '対象ユーザー', value: '16〜30歳の若年層' },
