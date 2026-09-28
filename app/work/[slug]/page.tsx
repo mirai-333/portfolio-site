@@ -123,18 +123,21 @@ export default async function ProjectDetailPage({
       body:
         '若年層が地震・津波発生時になぜ避難を遅らせるのか、従来の避難訓練にはどのような限界があるのか、そしてVRを活用した避難訓練がどのように有効なのかを先行研究から調査しました。あわせて、類似システムであるSamwoo Immersion、SkillsVR、VR Planetを比較し、それぞれの目的、UIガイド、体験内容、強み・弱みを整理しました。これにより、既存事例で不足している要素と、本研究で取り入れるべき方向性を明確にしました。',
       preview: 'Literature review / Existing system comparison',
+      images: ['/img_FYP1.png', '/img_FYP2.png'],
     },
     {
       label: 'Questionnaire',
       body:
         '続いて、日本人・日本人以外の参加者を対象にアンケートを実施し、災害や避難に関する知識、判断傾向、従来の避難訓練で感じる課題、どのような訓練を求めているかを調べました。回答を分けて比較することで、災害経験や知識が少ない人と、日本で災害教育を受けてきた人との間に、認知や判断の違いがどの程度あるのかも確認しました。これらの結果は、単に災害状況を体験させるだけではなく、どのような学習要素や体験を組み込めば、より適切な判断や避難速度の向上につながるのかを考える基盤になりました。',
       preview: 'Questionnaire results / Comparative analysis',
+      images: ['/img_FYP3.png'],
     },
     {
       label: 'Interview',
       body:
         'さらに、実際に地震または津波を経験した人へのインタビューを行いました。発災時にどこにいたのか、何が起きたのか、そのときにどのように感じたのか、実際にどのような判断や避難行動を取ったのかを聞き取りました。アンケートだけでは得にくい、緊張や混乱、周囲の状況によって判断が変化する様子を把握し、VRシナリオに現実的な心理的・環境的要因を取り入れるための参考にしました。',
       preview: 'Interview findings / Disaster experience analysis',
+      images: ['/img_FYP4.png'],
     },
   ]
 
@@ -423,15 +426,15 @@ export default async function ProjectDetailPage({
                               </p>
                             </div>
 
-                            <div className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
-                              <div>
-                                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">
-                                  Image preview
-                                </p>
-                                <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                                  {block.preview}
-                                </p>
-                              </div>
+                            <div className="grid gap-3">
+                              {block.images.map((image) => (
+                                <img
+                                  key={image}
+                                  src={image}
+                                  alt={block.preview}
+                                  className="h-auto w-full rounded-2xl border border-border object-contain"
+                                />
+                              ))}
                             </div>
                           </section>
                         ))}
@@ -454,14 +457,18 @@ export default async function ProjectDetailPage({
                                 <tr className="border-b border-border/80">
                                   <th className="px-4 py-4 text-xs font-medium text-muted-foreground">イメージ</th>
                                   <th className="px-4 py-4">
-                                    <div className="flex min-h-24 items-center justify-center rounded-xl border border-dashed border-brand/25 bg-brand-soft/30 px-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-brand/65">
-                                      画像プレビュー
-                                    </div>
+                                    <img
+                                      src="/img_FYP5.png"
+                                      alt="屋外シナリオ"
+                                      className="h-auto w-full rounded-xl border border-border object-contain"
+                                    />
                                   </th>
                                   <th className="px-4 py-4">
-                                    <div className="flex min-h-24 items-center justify-center rounded-xl border border-dashed border-brand/25 bg-brand-soft/30 px-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-brand/65">
-                                      画像プレビュー
-                                    </div>
+                                    <img
+                                      src="/img_FYP6.png"
+                                      alt="屋内シナリオ"
+                                      className="h-auto w-full rounded-xl border border-border object-contain"
+                                    />
                                   </th>
                                 </tr>
                               </thead>
@@ -496,12 +503,11 @@ export default async function ProjectDetailPage({
                           <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
                             これらの内容が避難訓練として妥当であることを裏付けるため、ゲーム内のルート選択や必要な行動は、日本の行政機関が公開している防災情報をもとに設計しました。避難時の判断をゲーム的な演出だけで作るのではなく、現実の防災行動に基づいて体験へ落とし込んでいます。
                           </p>
-                          <div className="mt-4 flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
-                            <div>
-                              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
-                              <p className="mt-2 text-xs leading-5 text-muted-foreground">行政機関の防災情報・行動根拠</p>
-                            </div>
-                          </div>
+                          <img
+                            src="/img_FYP7.png"
+                            alt="行政機関の防災情報・行動根拠"
+                            className="mt-4 h-auto w-full rounded-2xl border border-border object-contain"
+                          />
                         </section>
 
                         <section>
@@ -512,13 +518,16 @@ export default async function ProjectDetailPage({
                             次に、シナリオ全体の流れと画面の方向性を明確にするため、ストーリーボードとUIのイメージ図を作成しました。これらは、構想をもとにAIを活用して作成したもので、完成イメージや体験の雰囲気を早い段階で共有・整理することを目的としています。
                           </p>
                           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                            {['ストーリーボード', 'UIイメージ'].map((label) => (
-                              <div key={label} className="flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
-                                <div>
-                                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
-                                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{label}</p>
-                                </div>
-                              </div>
+                            {[
+                              { label: 'ストーリーボード', image: '/img_FYP8.png' },
+                              { label: 'UIイメージ', image: '/img_FYP9.png' },
+                            ].map((item) => (
+                              <img
+                                key={item.label}
+                                src={item.image}
+                                alt={item.label}
+                                className="h-auto w-full rounded-2xl border border-border object-contain"
+                              />
                             ))}
                           </div>
                         </section>
@@ -530,12 +539,11 @@ export default async function ProjectDetailPage({
                           <p className="mt-2 text-[0.98rem] leading-8 text-muted-foreground sm:text-base">
                             その後、体験全体のフローを洗い出し、必要なUI画面・シーン構成・イベントの流れを整理しました。あわせて、開発時にどのような構造でスクリプトを組み立てるかも検討し、各機能やイベントの関係を事前に整理してから実装へ進みました。
                           </p>
-                          <div className="mt-4 flex min-h-36 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-5 text-center">
-                            <div>
-                              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
-                              <p className="mt-2 text-xs leading-5 text-muted-foreground">フロー図・実装構造</p>
-                            </div>
-                          </div>
+                          <img
+                            src="/img_FYP10.png"
+                            alt="フロー図・実装構造"
+                            className="mt-4 h-auto w-full rounded-2xl border border-border object-contain"
+                          />
                         </section>
                       </div>
                     ) : isWeDo && index === 9 ? (
