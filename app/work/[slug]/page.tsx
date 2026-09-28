@@ -22,6 +22,7 @@ export default async function ProjectDetailPage({
   const isSafeRoute = project.slug === 'saferoute-vr'
   const isGroceryTime = project.slug === 'grocery-time'
   const isWeDo = project.slug === 'wedo-ux'
+  const isLastRide = project.slug === 'last-ride-survival-protocol'
 
   const displayDuration = isSafeRoute
     ? '2026年4月 — 2026年7月（約8か月）（2025年12月-2026年3月までIR）'
@@ -579,6 +580,31 @@ export default async function ProjectDetailPage({
                       </p>
                     )}
 
+                    {isLastRide && index === 5 && (
+                      <div className="mt-7 space-y-5">
+                        <div className="grid gap-4 sm:grid-cols-2">
+                          {['/img2.jpg', '/img3.jpg', '/img4.jpg', '/img5.jpg', '/img6.jpg'].map((image, imageIndex) => (
+                            <img
+                              key={image}
+                              src={image}
+                              alt={`UV・テクスチャ・マテリアル制作 ${imageIndex + 1}`}
+                              className="h-auto w-full rounded-2xl border border-border object-contain"
+                            />
+                          ))}
+                        </div>
+                        <div className="grid gap-4 sm:grid-cols-[1fr_1fr] sm:items-start">
+                          <img
+                            src="/img_3D2.jpeg"
+                            alt="まつ毛や顔の細部を確認できる制作時のキャラクターモデル"
+                            className="h-auto w-full rounded-2xl border border-border object-contain"
+                          />
+                          <p className="rounded-2xl border border-brand/15 bg-brand-soft/25 px-4 py-4 text-sm leading-7 text-muted-foreground">
+                            ※最終レンダーではまつ毛が正しく表示されなかったため、顔の細部とまつ毛を確認できる制作時のモデルも併せて掲載しています。
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
                     {isWeDo && index >= 4 && index <= 8 && (
                       <div className={`mt-6 grid gap-4 ${
                         index === 6 ? 'grid-cols-1' : 'sm:grid-cols-2'
@@ -598,7 +624,9 @@ export default async function ProjectDetailPage({
                             key={image}
                             src={image}
                             alt={`${weDoDesignSteps[index]} ${imageIndex + 1}`}
-                            className="h-auto w-full rounded-2xl border border-border object-contain"
+                            className={`h-auto w-full rounded-2xl border border-border object-contain ${
+                              index === 8 ? 'bg-white' : ''
+                            }`}
                           />
                         ))}
                       </div>
