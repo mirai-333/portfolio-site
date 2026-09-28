@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 const links = [
   { href: '#work', label: '制作物' },
   { href: '#about', label: 'プロフィール' },
-  { href: '#skills', label: 'スキル・経験' },
 ]
 
 export function SiteNav() {
