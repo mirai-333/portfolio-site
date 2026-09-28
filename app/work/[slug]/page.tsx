@@ -506,7 +506,7 @@ export default async function ProjectDetailPage({
                           <img
                             src="/img_FYP7.png"
                             alt="行政機関の防災情報・行動根拠"
-                            className="mt-4 h-auto w-full rounded-2xl border border-border object-contain"
+                            className="mx-auto mt-4 h-auto w-full max-w-lg rounded-2xl border border-border object-contain"
                           />
                         </section>
 
@@ -542,7 +542,7 @@ export default async function ProjectDetailPage({
                           <img
                             src="/img_FYP10.png"
                             alt="フロー図・実装構造"
-                            className="mt-4 h-auto w-full rounded-2xl border border-border object-contain"
+                            className="mx-auto mt-4 h-auto w-full max-w-lg rounded-2xl border border-border object-contain"
                           />
                         </section>
                       </div>
@@ -580,11 +580,27 @@ export default async function ProjectDetailPage({
                     )}
 
                     {isWeDo && index >= 4 && index <= 8 && (
-                      <div className="mt-6 flex min-h-44 items-center justify-center rounded-2xl border border-dashed border-brand/25 bg-brand-soft/35 px-4 py-8 text-center" aria-label={`${weDoDesignSteps[index]}の画像を配置予定`}>
-                        <div>
-                          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand/70">画像プレビュー</p>
-                          <p className="mt-2 text-sm text-muted-foreground">{weDoDesignSteps[index]}の制作資料を配置予定</p>
-                        </div>
+                      <div className={`mt-6 grid gap-4 ${
+                        index === 6 ? 'grid-cols-1' : 'sm:grid-cols-2'
+                      }`}>
+                        {(
+                          index === 4
+                            ? ['/img_Wedo1.png', '/img_Wedo2.png']
+                            : index === 5
+                              ? ['/img_Wedo3.png', '/img_Wedo4.png']
+                              : index === 6
+                                ? ['/img_Wedo5.png']
+                                : index === 7
+                                  ? ['/img_Wedo6.png', '/img_Wedo7.png']
+                                  : ['/img_Wedo8.png', '/img_Wedo9.png']
+                        ).map((image, imageIndex) => (
+                          <img
+                            key={image}
+                            src={image}
+                            alt={`${weDoDesignSteps[index]} ${imageIndex + 1}`}
+                            className="h-auto w-full rounded-2xl border border-border object-contain"
+                          />
+                        ))}
                       </div>
                     )}
 
