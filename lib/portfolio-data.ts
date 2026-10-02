@@ -67,7 +67,7 @@ export const projects: Project[] = [
     role: '個人制作 / 全工程',
     duration: '2025年12月 — 2026年7月（約8か月）',
     youtubeUrl: 'https://youtu.be/TX7t-ck0Q28',
-    githubUrl: 'https://github.com/mirai-333/SafeRoute-VR/tree/main',
+    githubUrl: 'https://github.com/mirai-333/SafeRouteVR/tree/main',
     videoEmbedUrl: 'https://www.youtube.com/embed/TX7t-ck0Q28',
     facts: [
       { label: '対象ユーザー', value: '18〜25歳の若年層' },
